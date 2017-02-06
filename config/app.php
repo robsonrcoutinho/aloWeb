@@ -226,6 +226,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Categoria' => app\Categoria::class,
+        'Marca' => app\Marca::class,
+        'Pedido' => app\Pedido::class,
+        'Produto' =>app\Produto::class,
+        'Usuario' => app\Usuario::class,
+
+
     ],
 
 ];
