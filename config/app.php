@@ -230,7 +230,7 @@ return [
         'Marca' => app\Marca::class,
         'Pedido' => app\Pedido::class,
         'Produto' =>app\Produto::class,
-        'Usuario' => app\Usuario::class,
+        'User' => app\User::class,
 
 
     ],

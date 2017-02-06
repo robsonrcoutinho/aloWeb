@@ -16,11 +16,10 @@ class CreateFkTable extends Migration
 
        Schema::table('produtos', function (Blueprint $table) {
             $table->foreign('fk_id_categoria')->references('id')->on('categorias');
-            $table->foreign('fk_id_marca')->references('id')->on('marcas');
         });
 
         Schema::table('pedidos', function (Blueprint $table) {
-            $table->foreign('fk_id_usuario')->references('id')->on('usuarios');
+            $table->foreign('fk_id_user')->references('id')->on('users');
         });
 
         Schema::table('item_pedido', function (Blueprint $table) {
@@ -32,6 +31,12 @@ class CreateFkTable extends Migration
             $table->foreign('fk_id_produto')->references('id')->on('produtos');
 
         });
+
+        Schema::table('produto_marca', function (Blueprint $table) {
+            $table->foreign('fk_id_produto')->references('id')->on('produtos');
+            $table->foreign('fk_id_marca')->references('id')->on('marcas');
+        });
+
     }
 
     /**

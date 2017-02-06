@@ -17,7 +17,7 @@ class Produto extends Model
     }
 
     //Produto por ter varias marcas
-    public function marcas()
+    public function marca()
     {
         return $this->hasMany(Marca::class);
     }

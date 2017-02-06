@@ -15,7 +15,7 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('fk_id_usuario');
+            $table->unsignedInteger('fk_id_user');
             $table->date('data_pedido');
             $table->timestamps();
         });

@@ -14,10 +14,15 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = "usuarios";
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+        'name', 'email', 'password', 'razao_social','nome_fantasia','rua','telefone','cidade','uf','cnpj_cpf'];
 
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class);
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
