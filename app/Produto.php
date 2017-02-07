@@ -10,10 +10,10 @@ class Produto extends Model
     protected $fillable = ['nome_produto', 'valor'];
 
 
-    //Produto pertence a uma categoria
+    //Produto tem uma categoria
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class,'fk_id_categoria');
     }
 
     //Produto por ter varias marcas

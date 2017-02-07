@@ -33,10 +33,10 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="">Home</a></li>
-                        <li><a href="#">Pedidos</a></li>
-                        <li><a href="#">Produtos</a></li>
+                        <li><a href="{{route('pedidos')}}">Pedidos</a></li>
+                        <li><a href="{{route('produtos')}}">Produtos</a></li>
                         <li><a href="#">Estoque</a></li>
-                        <li><a href="#">Promoções</a></li>
+                        <li><a href="#">PromoÃ§Ãµes</a></li>
                     </ul>
 
 
@@ -49,9 +49,9 @@
         </nav>
     </div>
 </div>
+</BR></BR></BR>
 
-
-
+@yield('content')
 
 </body>
 
