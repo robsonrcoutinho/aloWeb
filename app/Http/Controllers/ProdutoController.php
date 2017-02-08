@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Produto;
+use App\Marca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ProdutoController extends Controller
 {
@@ -15,21 +18,35 @@ class ProdutoController extends Controller
 
     public function novo()
     {
-        return 'novo';
+        $categorias = Categoria::all()->pluck('nome_categoria', 'id');
+        $marcas = Marca::all()->pluck('marca', 'id');
+        return view('produto.novo', ['categorias'=>$categorias, 'marcas'=>$marcas]);
     }
 
-    public function salvar()
+    public function salvar(Request $request)
     {
-        return 'salvar';
+
+        $produto = Produto::create($request->all());
+        $produto->categoria = $request->get('categoria');
+        $produto->marca=$request->get('marca');
+        $produto->save();
+
+        /*$produto->categoria=sync($request->get('categoria')); //($categoria);
+        $produto->marca=sync($request->get('marca')); //($categoria);*/
+
+        return redirect('produtos');
     }
 
-    public function editar()
+    public function editar($id)
     {
-        return 'editar';
+        $produto = Produto::find($id);
+        return view('produto.editar', compact('produto'));
     }
 
-    public function excluir()
+    public function excluir($id)
     {
-        return 'excluir';
+        $produto = Produto::find($id);
+        $produto->delete();
+        return redirect('produtos');
     }
 }

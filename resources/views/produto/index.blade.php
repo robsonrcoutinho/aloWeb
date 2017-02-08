@@ -13,7 +13,8 @@
                                 <h3 class="panel-title">Listagem de Produtos</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                                <button type="button" class="btn btn-sm btn-primary btn-create">Criar Novo</button>
+                                <a class="btn btn-sm btn-primary btn-create"
+                                   href="{{route('produtos.novo')}}">Criar Novo</a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +35,7 @@
                             <tr>
                                 <td align="center">
                                     <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                    <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                    <a class="btn btn-danger" href="{{route('produtos.excluir',['id'=>$prod->id])}}"><em class="fa fa-trash"></em></a>
                                 </td>
                                 <td>{{$prod->nome_produto}}</td>
                                 <td>{{$prod->valor}}</td>
