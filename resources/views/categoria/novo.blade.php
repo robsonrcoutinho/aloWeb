@@ -22,7 +22,7 @@
                                 {!! Form::label ('nome_categoria', 'Nome Categoria: ') !!}
                                 {!! Form::text ('nome_categoria', null, ['class'=>'form-control']) !!}
                             </div>
-                            <button class="btn btn-info">Salvar</button>
+                            <button class="btn btn-primary">Salvar</button>
                         </form>
                     </div>
                 </div>

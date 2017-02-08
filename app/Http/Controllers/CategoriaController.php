@@ -24,13 +24,21 @@ class CategoriaController extends Controller
         return redirect()->route('categorias');
     }
 
-    public function editar()
+    public function editar($id)
     {
-        return 'editar';
+        $categoria = Categoria::find($id);
+        return view('categoria.editar', compact('categoria'));
     }
 
-    public function excluir()
+    public function alterar(Request $request, $id)
     {
-        return 'excluir';
+        Categoria::find($id)->update($request->all());
+        return redirect('categorias');
+    }
+    public function excluir($id)
+    {
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+        return redirect('categorias');
     }
 }

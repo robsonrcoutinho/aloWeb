@@ -34,6 +34,6 @@ Route::group(['prefix' => 'categorias'], function(){
     Route::get('novo',['as'=>'categorias.novo','uses'=>'CategoriaController@novo']);
     Route::post('salvar',['as'=>'categorias.salvar','uses'=>'CategoriaController@salvar']);
     Route::get('{id}/editar',['as' => 'categorias.editar', 'uses' => 'CategoriaController@editar']);
-    Route::put('{id}/alterar', ['as' => 'categoria.alterar', 'uses' => 'CategoriaController@alterar']);
+    Route::put('{id}/alterar', ['as' => 'categorias.alterar', 'uses' => 'CategoriaController@alterar']);
     Route::get('{id}/excluir', ['as' => 'categorias.excluir', 'uses' => 'CategoriaController@excluir']);
 });

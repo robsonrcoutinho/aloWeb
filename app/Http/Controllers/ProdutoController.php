@@ -36,6 +36,7 @@ class ProdutoController extends Controller
         $marcas = Marca::all()->pluck('marca', 'id');
         return view('produto.editar', compact('produto', 'categorias', 'marcas'));
     }
+
     public function alterar(Request $request, $id)
     {
         Produto::find($id)->update($request->all());

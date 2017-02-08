@@ -11,7 +11,7 @@
                     </ol>
 
                     <div class="panel-body">
-                        {!! Form::open(['route'=>['marcas.editar', $marca->id], 'method'=>'put']) !!}
+                        {!! Form::open(['route'=>['marcas.alterar', $marca->id], 'method'=>'put']) !!}
                         {{ csrf_field() }}
                         @if($errors->any())
                             <ul class="alert alert-warning">
