@@ -11,7 +11,7 @@
                     </ol>
 
                     <div class="panel-body">
-                        {!! Form::open(['route'=>['marcas.alterar', $marca->id], 'method'=>'put']) !!}
+                        {!! Form::open(['route'=>['marcas.editar', $marca->id], 'method'=>'put']) !!}
                         {{ csrf_field() }}
                         @if($errors->any())
                             <ul class="alert alert-warning">
@@ -28,8 +28,7 @@
                             {!! Form::label ('marca', 'Marca: ') !!}
                             {!! Form::text ('marca', $marca->marca, ['class'=>'form-control']) !!}
                         </div>
-
-                        <button class="btn btn-info">Salvar</button>
+                        {!! Form::submit ('Gravar', ['class'=>'btn btn-primary']) !!}
                         {!! Form::close() !!}
                     </div>
                 </div>

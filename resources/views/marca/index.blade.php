@@ -31,7 +31,8 @@
                             @foreach($marcas as $marca)
                                 <tr>
                                     <td align="center">
-                                        <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                        <a class="btn btn-default" href="{{route('marcas.editar', ['id'=>$marca->id])}}">
+                                            <em class="fa fa-pencil"></em></a>
                                         <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
                                     </td>
                                     <td>{{$marca->marca}}</td>

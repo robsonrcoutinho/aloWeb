@@ -35,7 +35,8 @@
                             <tr>
                                 <td align="center">
                                     <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                    <a class="btn btn-danger" href="{{route('produtos.excluir',['id'=>$prod->id])}}"><em class="fa fa-trash"></em></a>
+                                    <a class="btn btn-danger" href="{{route('produtos.excluir',['id'=>$prod->id])}}">
+                                        <em class="fa fa-trash"></em></a>
                                 </td>
                                 <td>{{$prod->nome_produto}}</td>
                                 <td>{{$prod->valor}}</td>
