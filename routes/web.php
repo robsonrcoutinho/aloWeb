@@ -2,7 +2,7 @@
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
 
 Route::group(['prefix' => 'produtos'], function(){
     Route::get('',['as'=>'produtos','uses'=>'ProdutoController@index']);
