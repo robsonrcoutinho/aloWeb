@@ -16,6 +16,7 @@ class CreateFkTable extends Migration
 
        Schema::table('produtos', function (Blueprint $table) {
             $table->foreign('fk_id_categoria')->references('id')->on('categorias');
+            $table->foreign('fk_id_marca')->references('id')->on('marcas');
         });
 
         Schema::table('pedidos', function (Blueprint $table) {

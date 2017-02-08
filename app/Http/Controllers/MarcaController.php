@@ -18,9 +18,10 @@ class MarcaController extends Controller
         return view('marca.novo');
     }
 
-    public function salvar()
+    public function salvar(Request $request)
     {
-        return 'salvar';
+        Marca::create($request->all());
+        return redirect('marcas');
     }
 
     public function editar($id)

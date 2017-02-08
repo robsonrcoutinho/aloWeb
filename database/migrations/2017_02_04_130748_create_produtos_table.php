@@ -17,7 +17,7 @@ class CreateProdutosTable extends Migration
             $table->increments('id');
             $table->string('nome_produto',70);
             $table->unsignedInteger('fk_id_categoria');
-            //$table->unsignedInteger('fk_id_marca');
+            $table->unsignedInteger('fk_id_marca');
             $table->double('valor',6,2);
             $table->timestamps();
         });

@@ -9,7 +9,7 @@
                         <li class="active">Novo</li>
                     </ol>
                     <div class="panel-body">
-                        <form action="{{ route('marcas.salvar')}}" method="post">
+                        {!! Form::open(['route'=>'marcas.salvar']) !!}
                             {{ csrf_field() }}
                             @if($errors->any())
                                 <ul class="alert alert-warning">
@@ -22,8 +22,8 @@
                                 {!! Form::label ('marca', 'Marca: ') !!}
                                 {!! Form::text ('marca', null, ['class'=>'form-control']) !!}
                             </div>
-                            <button class="btn btn-info">Salvar</button>
-                        </form>
+                        {!! Form::submit ('Gravar', ['class'=>'btn btn-primary']) !!}
+
                     </div>
                 </div>
             </div>
