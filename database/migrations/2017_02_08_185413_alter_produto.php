@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProdutoMarca extends Migration
+class AlterProduto extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateProdutoMarca extends Migration
      */
     public function up()
     {
-       /* Schema::create('produto_marca', function (Blueprint $table) {
-            $table->unsignedInteger('fk_id_produto');
+        Schema::table('produtos', function (Blueprint $table) {
             $table->unsignedInteger('fk_id_marca');
 
-        });*/
+        });
+        Schema::table('produtos', function (Blueprint $table) {
+
+            $table->foreign('fk_id_marca')->references('id')->on('marcas');
+        });
     }
 
     /**

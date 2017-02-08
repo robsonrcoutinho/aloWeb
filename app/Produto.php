@@ -19,6 +19,6 @@ class Produto extends Model
     //Produto por ter varias marcas
     public function marca()
     {
-        return $this->hasMany(Marca::class);
+        return $this->belongsTo(Marca::class);
     }
 }
