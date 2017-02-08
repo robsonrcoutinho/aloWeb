@@ -6,7 +6,7 @@ use App\Categoria;
 use App\Produto;
 use App\Marca;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Input;
 
 class ProdutoController extends Controller
 {
@@ -25,24 +25,22 @@ class ProdutoController extends Controller
 
     public function salvar(Request $request)
     {
-
-        $produto = Produto::create($request->all());
-        $produto->categoria = $request->get('categoria');
-        $produto->marca=$request->get('marca');
-        $produto->save();
-
-        /*$produto->categoria=sync($request->get('categoria')); //($categoria);
-        $produto->marca=sync($request->get('marca')); //($categoria);*/
-
+        Produto::create($request->all());
         return redirect('produtos');
     }
 
     public function editar($id)
     {
         $produto = Produto::find($id);
-        return view('produto.editar', compact('produto'));
+        $categorias = Categoria::all()->pluck('nome_categoria', 'id');
+        $marcas = Marca::all()->pluck('marca', 'id');
+        return view('produto.editar', compact('produto', 'categorias', 'marcas'));
     }
-
+    public function alterar(Request $request, $id)
+    {
+        Produto::find($id)->update($request->all());
+        return redirect('produtos');
+    }
     public function excluir($id)
     {
         $produto = Produto::find($id);

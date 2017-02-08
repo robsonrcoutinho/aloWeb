@@ -11,7 +11,7 @@
                                 <h3 class="panel-title">Listagem de Categorias</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                                <a href="{{ route('marcas.novo')}}" class="btn btn-sm btn-primary btn-create">Criar novo</a>
+                                <a href="{{ route('categorias.novo')}}" class="btn btn-sm btn-primary btn-create">Criar novo</a>
                             </div>
                         </div>
                     </div>
@@ -31,8 +31,8 @@
                             @foreach($categorias as $categoria)
                                 <tr>
                                     <td align="center">
-                                        <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
-                                        <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                        <a href="{{route('categorias.editar',['id'=>$categoria->id])}}" class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                        <a href="{{route('categorias.excluir',['id'=>$categoria->id])}}"class="btn btn-danger"><em class="fa fa-trash"></em></a>
                                     </td>
                                     <td>{{$categoria->nome_categoria}}</td>
 

@@ -18,9 +18,10 @@ class CategoriaController extends Controller
         return view('categoria.novo');
     }
 
-    public function salvar()
+    public function salvar(Request $request)
     {
-        return 'salvar';
+        Categoria::create($request->all());
+        return redirect()->route('categorias');
     }
 
     public function editar()

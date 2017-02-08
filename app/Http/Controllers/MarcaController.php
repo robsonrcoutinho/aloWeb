@@ -21,7 +21,7 @@ class MarcaController extends Controller
     public function salvar(Request $request)
     {
         Marca::create($request->all());
-        return redirect('marcas');
+        return redirect()->route('marcas');
     }
 
     public function editar($id)
@@ -29,7 +29,11 @@ class MarcaController extends Controller
         $marca = Marca::find($id);
         return view('marcas.editar',compact('marca'));
     }
-
+    public function alterar(Request $request, $id)
+    {
+        Marca::find($id)->update($request->all());
+        return redirect()->route('marcas');
+    }
     public function excluir()
     {
         return 'excluir';
