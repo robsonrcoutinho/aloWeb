@@ -18,9 +18,10 @@ class MarcaController extends Controller
         return view('marca.novo');
     }
 
-    public function salvar()
+    public function salvar(Request $request)
     {
-        return 'salvar';
+        Marca::create($request->all());
+        return redirect()->route('marcas');
     }
 
     public function editar($id)
@@ -28,7 +29,11 @@ class MarcaController extends Controller
         $marca = Marca::find($id);
         return view('marca.editar',compact('marca'));
     }
-
+    public function alterar(Request $request, $id)
+    {
+        Marca::find($id)->update($request->all());
+        return redirect()->route('marcas');
+    }
     public function excluir()
     {
         return 'excluir';

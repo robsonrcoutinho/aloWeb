@@ -12,29 +12,29 @@
                         </div>
                     </div>
                 </div>
-                </BR>
+                </br>
 
-                <form class="form-horizontal">
+                <div class="form-horizontal">
                     {!! Form::open(['route'=>'produtos.salvar']) !!}
                     <div class="form-group">
                         <label for="inputNome" class="control-label col-xs-2">Nome Produto</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" id="inputNome" placeholder="Nome do Produto">
+                            <input type="text" class="form-control" id="inputNome" name="nome_produto" placeholder="Nome do Produto">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label ('id', 'Categoria ',[ 'class'=>'control-label col-xs-2']) !!}
+                        {!! Form::label ('fk_id_categoria', 'Categoria ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
-                            {{Form::select('categoria',$categorias,null, ['id','class'=>'form-control',
+                            {{Form::select('fk_id_categoria',$categorias,null, ['id','class'=>'form-control',
                              'placeholder'=>''])}}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label ('marca', 'Marca ',[ 'class'=>'control-label col-xs-2']) !!}
+                        {!! Form::label ('fk_id_marca', 'Marca ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
-                            {{Form::select('marca',$marcas,null, ['id','class'=>'form-control',
+                            {{Form::select('fk_id_marca',$marcas,null, ['id','class'=>'form-control',
                             'placeholder'=>''])}}
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label for="inputValor" class="control-label col-xs-2">Valor R$</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" id="inputValor" placeholder="Valor">
+                            <input type="text" class="form-control" name="valor" id="inputValor" placeholder="Valor">
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,7 +51,7 @@
 
                         </div>
                     </div>
-                </form>
+                </div>
                 {!! Form::close() !!}
             </div>
 

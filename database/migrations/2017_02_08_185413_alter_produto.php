@@ -15,10 +15,6 @@ class AlterProduto extends Migration
     {
         Schema::table('produtos', function (Blueprint $table) {
             $table->unsignedInteger('fk_id_marca');
-
-        });
-        Schema::table('produtos', function (Blueprint $table) {
-
             $table->foreign('fk_id_marca')->references('id')->on('marcas');
         });
     }
