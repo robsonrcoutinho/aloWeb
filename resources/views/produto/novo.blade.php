@@ -14,12 +14,21 @@
                 </div>
                 </br>
 
+                @if(isset($errors) && count($errors)>0)
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <p>{{$error}}</p>
+                        @endforeach
+                    </div>
+                @endif
+
                 <div class="form-horizontal">
-                    {!! Form::open(['route'=>'produtos.salvar']) !!}
+                    {!! Form::open(['route'=>'produtos.salvar','enctype'=>'multipart/form-data']) !!}
                     <div class="form-group">
                         <label for="inputNome" class="control-label col-xs-2">Nome Produto</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" id="inputNome" name="nome_produto" placeholder="Nome do Produto">
+                            <input type="text" class="form-control" id="inputNome" name="nome_produto"
+                                   placeholder="Nome do Produto" value="{{old('nome_produto')}}">
                         </div>
                     </div>
 
@@ -27,7 +36,7 @@
                         {!! Form::label ('fk_id_categoria', 'Categoria ',[ 'class'=>'control-label col-xs-2']) !!}
                         <div class="col-xs-5">
                             {{Form::select('fk_id_categoria',$categorias,null, ['id','class'=>'form-control',
-                             'placeholder'=>''])}}
+                            'placeholder'=>''])}}
                         </div>
                     </div>
 
@@ -42,13 +51,21 @@
                     <div class="form-group">
                         <label for="inputValor" class="control-label col-xs-2">Valor R$</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="valor" id="inputValor" placeholder="Valor">
+                            <input type="text" class="form-control" name="valor" id="inputValor" value="{{old('valor')}}"
+                                   placeholder="Valor">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="imagem" class="control-label col-xs-2">Imagem</label>
+                        <div class="col-xs-5">
+                          {{ Form::file('imagem',['class'=>'form-control'] )}}
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
-                            {!! Form::submit ('Gravar', ['class'=>'btn btn-primary']) !!}
-
+                            {{ Form::submit ('Gravar', ['class'=>'btn btn-primary']) }}
                         </div>
                     </div>
                 </div>

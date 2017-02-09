@@ -12,11 +12,11 @@
                         <form action="{{ route('categorias.salvar')}}" method="post">
                             {{ csrf_field() }}
                             @if($errors->any())
-                                <ul class="alert alert-warning">
+                                <div class="alert alert-danger">
                                     @foreach(collect($errors->all())->unique() as $error)
                                         <li>{{$error}}</li>
                                     @endforeach
-                                </ul>
+                                </div>
                             @endif
                             <div class="form-group">
                                 {!! Form::label ('nome_categoria', 'Nome Categoria: ') !!}

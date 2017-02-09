@@ -24,7 +24,7 @@
                             <thead>
                             <tr>
                                 <th><em class="fa"></em></th>
-
+                                <th>Imagem</th>
                                 <th>Nome Poduto</th>
                                 <th>Valor</th>
                                 <th>Categoria</th>
@@ -37,6 +37,9 @@
                                     <a class="btn btn-default" href="{{route('produtos.editar',['id'=>$prod->id])}}"><em class="fa fa-pencil"></em></a>
                                     <a class="btn btn-danger" href="{{route('produtos.excluir',['id'=>$prod->id])}}"><em class="fa fa-trash"></em></a>
                                 </td>
+
+                                <td align="center">{{Html::image($prod->imagem,'alt',
+                                    array('class'=>'img-rounded','width' => 70, 'height' => 70 ))}}</td>
                                 <td>{{$prod->nome_produto}}</td>
                                 <td>{{$prod->valor}}</td>
                                 <td>{{$prod->categoria->nome_categoria}}</td>

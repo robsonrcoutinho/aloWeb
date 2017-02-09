@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Marca;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\MarcaRequest;
 class MarcaController extends Controller
 {
     public function index()
@@ -18,7 +18,7 @@ class MarcaController extends Controller
         return view('marca.novo');
     }
 
-    public function salvar(Request $request)
+    public function salvar(MarcaRequest $request)
     {
         Marca::create($request->all());
         return redirect()->route('marcas');

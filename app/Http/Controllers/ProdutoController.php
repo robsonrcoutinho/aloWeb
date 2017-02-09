@@ -6,7 +6,7 @@ use App\Categoria;
 use App\Produto;
 use App\Marca;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Input;
+use App\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller
 {
@@ -23,9 +23,20 @@ class ProdutoController extends Controller
         return view('produto.novo', ['categorias'=>$categorias, 'marcas'=>$marcas]);
     }
 
-    public function salvar(Request $request)
+    public function salvar(ProdutoRequest $request)
     {
-        Produto::create($request->all());
+        //Produto::create($request->all());
+
+        $produto = new Produto($request->all());
+        $nome_produto = $produto->nome_produto;
+        $imagem = $request->file('imagem');
+
+        $nome_produto.= '.' . $imagem->getClientOriginalExtension();
+        $diretorio = 'public/' . 'produtos';
+        $imagem->move($diretorio, $nome_produto);
+        $produto->imagem= $diretorio . '/' . $nome_produto;
+        $produto->save();
+
         return redirect('produtos');
     }
 
