@@ -37,3 +37,13 @@ Route::group(['prefix' => 'categorias'], function(){
     Route::put('{id}/alterar', ['as' => 'categorias.alterar', 'uses' => 'CategoriaController@alterar']);
     Route::get('{id}/excluir', ['as' => 'categorias.excluir', 'uses' => 'CategoriaController@excluir']);
 });
+
+Route::group(['prefix' => 'promocaos'], function(){
+    Route::get('',['as'=>'promocaos','uses'=>'PromocaoController@index']);
+    Route::get('novo',['as'=>'promocaos.novo', 'uses'=>'PromocaoController@novo']);
+    Route::post('salvar',['as'=>'promocaos.salvar', 'uses' => 'PromocaoController@salvar']);
+    Route::get('{id}/excluir', ['as' => 'promocaos.excluir', 'uses' => 'PromocaoController@excluir']);
+    Route::get('{id}/editar',['as' => 'promocaos.editar', 'uses' => 'PromocaoController@editar']);
+    Route::put('{id}/alterar', ['as' => 'promocaos.alterar', 'uses' => 'PromocaoController@alterar']);
+
+});

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemPedido extends Migration
+class ProdutoPromocao extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateItemPedido extends Migration
      */
     public function up()
     {
-        Schema::create('item_pedido', function (Blueprint $table) {
-            $table->unsignedInteger('fk_id_pedido');
+        Schema::create('produto_promocao', function (Blueprint $table) {
             $table->unsignedInteger('fk_id_produto');
-            $table->integer('quant_produto');
-            $table->double('valor_total',6,2);
-            $table->double('valor_unitario',6,2);
+            $table->unsignedInteger('fk_id_promocao');
+            $table->foreign('fk_id_produto')->references('id')->on('produtos');
+            $table->foreign('fk_id_promocao')->references('id')->on('promocaos');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateItemPedido extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_pedido');
+        Schema::dropIfExists('produto_promocao');
     }
 }
