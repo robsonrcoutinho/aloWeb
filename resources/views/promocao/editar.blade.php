@@ -6,12 +6,12 @@
 
                 <div class="panel panel-default">
                     <ol class="breadcrumb panel-heading">
-                        <li><a href="{{ route('promocaos') }}">Promoção</a></li>
+                        <li><a href="{{ route('promocaos') }}" value="">Promocao</a></li>
                         <li class="active">Editar</li>
                     </ol>
 
                     <div class="form-horizontal">
-                        {!! Form::open(['route'=>['promocaos.alterar', $produto->id], 'method'=>'put']) !!}
+                        {!! Form::open(['route'=>['promocaos.alterar', $promocao->id], 'method'=>'put']) !!}
                         {{ csrf_field() }}
                         @if($errors->any())
                             <ul class="alert alert-warning">
@@ -36,6 +36,36 @@
                                 {!! Form::text('valor', $promocao->valor, ['class'=>'form-control']) !!}
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalProdutos">
+                            Produtos
+                        </button>
+                            </div></div>
+                        <div class="modal fade" id="ModalProdutos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Produtos</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        @foreach($produtos as $produto)
+                                            {!! Form::checkbox('produtos[]', $produto->id, $promocao->produtos->contains($produto),['id'=>$produto->id, 'class'=>'filled-in']) !!}
+                                            {!! Form::label($produto->id, $produto->nome_produto) !!}
+                                            <br/>
+                                        @endforeach
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {!! Html::script('js/bootstrap.min.js') !!}
+                        {!! Html::script('js/app.js') !!}
 
                         <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-10">

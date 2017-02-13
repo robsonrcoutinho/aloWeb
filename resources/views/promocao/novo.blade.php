@@ -30,7 +30,44 @@
                                 {!! Form::text('valor', null, ['class'=>'form-control', 'value'=>old('valor'), 'placeholder'=>"Valor"]) !!}
                             </div>
                         </div>
+
+                        <!-- Modal Trigger -->
+                        <!-- Button trigger modal -->
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-2 col-xs-10">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalProdutos">
+                            Produtos
+                        </button>
+                        </div>
+                    </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="ModalProdutos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Produtos</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        @foreach($produtos as $produto)
+                                            {!! Form::checkbox('produtos[]', $produto->id, null,['id'=>$produto->id, 'class'=>'filled-in']) !!}
+                                            {!! Form::label($produto->id, $produto->nome_produto) !!}
+                                            <br/>
+                                        @endforeach
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {!! Html::script('js/app.js') !!}
+
                         <div class="form-group">
+
                             <div class="col-xs-offset-2 col-xs-10">
                                 {{ Form::submit ('Gravar', ['class'=>'btn btn-primary']) }}
                             </div>
