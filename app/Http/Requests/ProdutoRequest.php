@@ -25,7 +25,7 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'nome_produto'=>'required|min:3|max:70',
-            'valor'=>'required|numeric|between:0,99.99',
+            'valor'=>'required|numeric|between:0,99999.99',
             'fk_id_categoria'=>'required',
             'fk_id_marca'=>'required',
             'imagem'=>'required'
