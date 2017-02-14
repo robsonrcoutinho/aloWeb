@@ -1,7 +1,6 @@
 @extends('main')
 @section('content')
 
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
       <div class="container">
         <div class="row">
@@ -26,8 +25,9 @@
                                 <th><em class="fa"></em></th>
                                 <th>Imagem</th>
                                 <th>Nome Poduto</th>
-                                <th>Valor</th>
+                                <th>Marca</th>
                                 <th>Categoria</th>
+                                <th>Valor</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,8 +41,9 @@
                                 <td align="center">{{Html::image($prod->imagem,'alt',
                                     array('class'=>'img-rounded','width' => 70, 'height' => 70 ))}}</td>
                                 <td>{{$prod->nome_produto}}</td>
-                                <td>{{$prod->valor}}</td>
+                                <td>{{$prod->marca->marca}}</td>
                                 <td>{{$prod->categoria->nome_categoria}}</td>
+                                <td>{{$prod->valor}}</td>
                             </tr>
                             @endforeach
                             </tbody>

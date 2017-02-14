@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Produto;
 use App\Marca;
-use Illuminate\Http\Request;
 use App\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller
@@ -48,7 +47,7 @@ class ProdutoController extends Controller
         return view('produto.editar', compact('produto', 'categorias', 'marcas'));
     }
 
-    public function alterar(Request $request, $id)
+    public function alterar(ProdutoRequest $request, $id)
     {
         Produto::find($id)->update($request->all());
         return redirect('produtos');
