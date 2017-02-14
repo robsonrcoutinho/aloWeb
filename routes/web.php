@@ -47,3 +47,13 @@ Route::group(['prefix' => 'promocaos'], function(){
     Route::put('{id}/alterar', ['as' => 'promocaos.alterar', 'uses' => 'PromocaoController@alterar']);
 
 });
+
+Route::group(['prefix' => 'estoques'], function(){
+    Route::get('',['as'=>'estoques','uses'=>'EstoqueController@index']);
+    Route::get('novo',['as'=>'estoques.novo', 'uses'=>'EstoqueController@novo']);
+    Route::post('salvar',['as'=>'estoques.salvar', 'uses' => 'EstoqueController@salvar']);
+    Route::get('{id}/excluir', ['as' => 'estoques.excluir', 'uses' => 'EstoqueController@excluir']);
+    Route::get('{id}/editar',['as' => 'estoques.editar', 'uses' => 'EstoqueController@editar']);
+    Route::put('{id}/alterar', ['as' => 'estoques.alterar', 'uses' => 'EstoqueController@alterar']);
+
+});

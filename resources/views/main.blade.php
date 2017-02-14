@@ -37,7 +37,7 @@
                         <li><a href="{{route('produtos')}}">Produtos</a></li>
                         <li><a href="{{route('marcas')}}">Marcas</a></li>
                         <li><a href="{{route('categorias')}}">Categorias</a></li>
-                        <li><a href="#">Estoque</a></li>
+                        <li><a href="{{route('estoques')}}">Estoque</a></li>
                         <li><a href="{{route('promocaos')}}">Promoções</a></li>
                     </ul>
 
