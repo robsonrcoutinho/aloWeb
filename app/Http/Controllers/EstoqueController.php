@@ -22,6 +22,10 @@ class EstoqueController extends Controller
 
     public function salvar(EstoqueRequest $request)
     {
+        $this->validate($request,
+            ['fk_id_produto'=>'unique:estoques'],
+            ['unique'=>':attribute existente no estoque'],
+            ['fk_id_produto'=>'Produto']);
         Estoque::create($request->all());
         return redirect()->route('estoques');
     }

@@ -9,7 +9,6 @@
                         <li><a href="{{ route('produtos') }}">Produtos</a></li>
                         <li class="active">Editar</li>
                     </ol>
-
                     <div class="form-horizontal">
                         {!! Form::open(['route'=>['produtos.alterar', $produto->id], 'method'=>'put']) !!}
                         {{ csrf_field() }}
@@ -27,7 +26,7 @@
                         <div class="form-group">
                             {!! Form::label ('nome_produto', 'Nome Produto: ',['class'=>'control-label col-xs-2']) !!}
                             <div class="col-xs-5">
-                            {!! Form::text('nome_produto', $produto->nome_produto, ['class'=>'form-control']) !!}
+                                {!! Form::text('nome_produto', $produto->nome_produto, ['class'=>'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,6 +42,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            {!! Form::label('valor', 'Valor R$', ['class'=>'control-label col-xs-2']) !!}
+                            <div class="col-xs-5">
+                                {!! Form::text('valor', $produto->valor, ['class'=>'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-xs-offset-2 col-xs-10">
                                 {!! Form::submit ('Gravar', ['class'=>'btn btn-primary']) !!}
 
@@ -50,10 +55,10 @@
                         </div>
 
                     </div>
-                        {!! Form::close() !!}
-                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estoque extends Model
 {
     public $table = 'estoques';
-    protected $fillable = ['fk_id_produto'];
+    protected $fillable = ['fk_id_produto', 'quantidade'];
 
     public function produto()
     {

@@ -23,12 +23,16 @@
 
                         <div class="form-horizontal">
                             {!! Form::open(['route'=>'estoques.salvar']) !!}
-
                             <div class="form-group">
                                 {!! Form::label ('fk_id_produto', 'Produto ',[ 'class'=>'control-label col-xs-2']) !!}
                                 <div class="col-xs-5">
-                                    {{Form::select('fk_id_produto',$produtos,null, ['id','class'=>'form-control',
-                                    'placeholder'=>''])}}
+                                    {{Form::select('fk_id_produto',$produtos,null, ['id','class'=>'form-control'])}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('quantidade', 'Quantidade ',['class'=>'control-label col-xs-2']) !!}
+                                <div class="col-xs-5">
+                                    {!! Form::number('quantidade', old('valor'), ['class'=>'form-control','placeholder'=>'Quantidade']) !!}
                                 </div>
                             </div>
 

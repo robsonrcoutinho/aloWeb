@@ -24,6 +24,7 @@
                                 <tr>
                                     <th><em class="fa"></em></th>
                                     <th>Nome Poduto</th>
+                                    <th>Quantidade</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,6 +35,7 @@
                                             <a class="btn btn-danger" href="{{route('estoques.excluir',['id'=>$estoque->id])}}"><em class="fa fa-trash"></em></a>
                                         </td>
                                         <td>{{$estoque->produto->nome_produto}}</td>
+                                        <td>{{$estoque->quantidade}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

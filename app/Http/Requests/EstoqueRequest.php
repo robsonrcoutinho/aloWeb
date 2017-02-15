@@ -25,13 +25,15 @@ class EstoqueRequest extends FormRequest
     {
         return [
             'fk_id_produto' => 'required',
+            'quantidade'=>'required|integer|min:0'
         ];
     }
 
     public function messages()
     {
         return [
-            'required' => 'Precisa informar campo :attribute'
+            'required' => 'Precisa informar campo :attribute',
+            'min'=>'Valor minimo para campo :attribute deve ser :min'
         ];
     }
 
