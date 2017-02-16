@@ -10,6 +10,11 @@ class Promocao extends Model
 
     public function produtos()
     {
-        return $this->belongsToMany(Produto::class, 'produto_promocao','fk_id_promocao', 'fk_id_produto');
+        return $this->belongsToMany(Produto::class, 'produto_promocao', 'fk_id_promocao', 'fk_id_produto');
+    }
+
+    public function items()
+    {
+        return $this->morphMany(Item::class, 'elemento');
     }
 }

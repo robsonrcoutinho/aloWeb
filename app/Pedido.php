@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use app\User;
 
 class Pedido extends Model
 {
@@ -15,5 +14,10 @@ class Pedido extends Model
     public function usuario()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 }

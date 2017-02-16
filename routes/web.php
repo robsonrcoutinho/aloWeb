@@ -57,3 +57,12 @@ Route::group(['prefix' => 'estoques'], function(){
     Route::put('{id}/alterar', ['as' => 'estoques.alterar', 'uses' => 'EstoqueController@alterar']);
 
 });
+
+Route::group(['prefix' => 'users'], function(){
+    Route::get('',['as'=>'users','uses'=>'UserController@index']);
+    Route::get('novo',['as'=>'users.novo', 'uses'=>'UserController@novo']);
+    Route::post('salvar',['as'=>'users.salvar', 'uses' => 'UserController@salvar']);
+    Route::get('{id}/excluir', ['as' => 'users.excluir', 'uses' => 'UserController@excluir']);
+    Route::get('{id}/editar',['as' => 'users.editar', 'uses' => 'UserController@editar']);
+    Route::put('{id}/alterar', ['as' => 'users.alterar', 'uses' => 'UserController@alterar']);
+});

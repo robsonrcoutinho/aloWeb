@@ -26,4 +26,8 @@ class Produto extends Model
     {
         return $this->hasOne(Estoque::class);
     }
+    public function items()
+    {
+        return $this->morphMany(Item::class, 'elemento');
+    }
 }
