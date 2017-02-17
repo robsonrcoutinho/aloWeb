@@ -24,7 +24,7 @@ class MarcaRequest extends FormRequest
     public function rules()
     {
         return [
-            'marca'=>'required|min:3|max:25'
+            'marca'=>'required|min:2|max:25'
         ];
     }
 
@@ -32,7 +32,7 @@ class MarcaRequest extends FormRequest
     {
         return [
             'marca.required'=>'O campo marca é obrigatório',
-            'marca.min'=>'O campo marca deve ser maior que 3',
+            'marca.min'=>'O campo marca deve ser maior que 2',
             'marca.max'=>'O campo marca deve ser menor que 25',
         ];
     }

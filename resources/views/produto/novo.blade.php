@@ -64,6 +64,15 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="inputValor" class="control-label col-xs-2">Qtd. Estoque</label>
+                        <div class="col-xs-5">
+                            <input type="text" class="form-control" name="quantidade" id="inputEstoque" value="0"
+                                   placeholder="Qtd. Estoque">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
                             {{ Form::submit ('Gravar', ['class'=>'btn btn-primary']) }}
                         </div>

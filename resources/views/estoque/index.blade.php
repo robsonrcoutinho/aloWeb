@@ -11,10 +11,10 @@
                                 <div class="col col-xs-6">
                                     <h3 class="panel-title">Listagem de Estoques</h3>
                                 </div>
-                                <div class="col col-xs-6 text-right">
+                                <!--  <div class="col col-xs-6 text-right">
                                     <a class="btn btn-sm btn-primary btn-create"
-                                       href="{{route('estoques.novo')}}">Criar Novo</a>
-                                </div>
+                                    href="{{route('estoques.novo')}}">Criar Novo</a>
+                                </div>-->
                             </div>
                         </div>
 
@@ -32,7 +32,7 @@
                                     <tr>
                                         <td align="center">
                                             <a class="btn btn-default" href="{{route('estoques.editar',['id'=>$estoque->id])}}"><em class="fa fa-pencil"></em></a>
-                                            <a class="btn btn-danger" href="{{route('estoques.excluir',['id'=>$estoque->id])}}"><em class="fa fa-trash"></em></a>
+                                          <!--  <a class="btn btn-danger" href="{{route('estoques.excluir',['id'=>$estoque->id])}}"><em class="fa fa-trash"></em></a> -->
                                         </td>
                                         <td>{{$estoque->produto->nome_produto}}</td>
                                         <td>{{$estoque->quantidade}}</td>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Http\Requests\EstoqueRequest;
 use App\Produto;
 use App\Marca;
+use App\Estoque;
 use App\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller
@@ -26,6 +28,7 @@ class ProdutoController extends Controller
     {
         //Produto::create($request->all());
 
+
         $produto = new Produto($request->all());
         $nome_produto = $produto->nome_produto;
         $imagem = $request->file('imagem');
@@ -34,7 +37,17 @@ class ProdutoController extends Controller
         $diretorio = 'public/' . 'produtos';
         $imagem->move($diretorio, $nome_produto);
         $produto->imagem= $diretorio . '/' . $nome_produto;
-        $produto->save();
+         $produto->save();
+
+         $estoque = new Estoque();
+         $estoque->fk_id_produto = $produto->id;
+         $estoque->quantidade = $request->get('quantidade');
+
+
+
+         $estoque->save();
+
+
 
         return redirect('produtos');
     }

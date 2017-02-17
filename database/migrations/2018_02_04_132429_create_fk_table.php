@@ -29,7 +29,8 @@ class CreateFkTable extends Migration
         });
 
         Schema::table('estoques', function (Blueprint $table) {
-            $table->foreign('fk_id_produto')->references('id')->on('produtos');
+            $table->foreign('fk_id_produto')->references('id')->on('produtos')
+                   ->onUpdate('cascade')->onDelete('cascade');
 
         });
 
