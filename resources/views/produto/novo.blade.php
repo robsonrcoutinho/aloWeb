@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label for="inputValor" class="control-label col-xs-2">Qtd. Estoque</label>
                         <div class="col-xs-5">
-                            <input type="text" class="form-control" name="quantidade" id="inputEstoque" value="0"
+                            <input type="text" class="form-control" name="quantidade" id="inputEstoque" value="{{old('quantidade')}}"
                                    placeholder="Qtd. Estoque">
                         </div>
                     </div>

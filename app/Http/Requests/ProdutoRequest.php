@@ -28,7 +28,8 @@ class ProdutoRequest extends FormRequest
             'valor'=>'required|numeric|between:0,99999.99',
             'fk_id_categoria'=>'required',
             'fk_id_marca'=>'required',
-            'imagem'=>'required'
+            'imagem'=>'required',
+            'quantidade'=>'required'
         ];
     }
 
@@ -40,7 +41,8 @@ class ProdutoRequest extends FormRequest
             'valor.required'=>'O campo Valor é obrigatório',
             'fk_id_categoria.required'=>'Escolha categoria',
             'fk_id_marca.required'=>'Escolha marca',
-            'imagem.required'=>'Selecione uma imagem'
+            'imagem.required'=>'Selecione uma imagem',
+            'quantidade.required'=>'Insira quantidade em estoque'
         ];
     }
 }
