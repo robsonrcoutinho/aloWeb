@@ -66,3 +66,12 @@ Route::group(['prefix' => 'users'], function(){
     Route::get('{id}/editar',['as' => 'users.editar', 'uses' => 'UserController@editar']);
     Route::put('{id}/alterar', ['as' => 'users.alterar', 'uses' => 'UserController@alterar']);
 });
+
+Route::group(['prefix' => 'pedidos'], function(){
+    Route::get('',['as'=>'pedidos','uses'=>'PedidoController@index']);
+    Route::get('{id}/detalhar',['as'=>'pedidos.detalhar', 'uses'=>'PedidoController@detalhar']);
+    //Route::post('salvar',['as'=>'pedidos.salvar', 'uses' => 'PedidoController@salvar']);
+    //Route::get('{id}/excluir', ['as' => 'pedidos.excluir', 'uses' => 'PedidoController@excluir']);
+    //Route::get('{id}/editar',['as' => 'pedidos.editar', 'uses' => 'PedidoController@editar']);
+    //Route::put('{id}/alterar', ['as' => 'pedidos.alterar', 'uses' => 'PedidoController@alterar']);
+});

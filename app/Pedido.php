@@ -13,7 +13,7 @@ class Pedido extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'fk_id_user');
     }
 
     public function items()

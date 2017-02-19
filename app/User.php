@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     public function pedidos()
     {
-        return $this->hasMany(Pedido::class);
+        return $this->hasMany(Pedido::class, 'fk_id_user');
     }
     /**
      * The attributes that should be hidden for arrays.
