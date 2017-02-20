@@ -8,12 +8,11 @@ class Pedido extends Model
 {
     protected $table = "pedidos";
 
-    // Talvez nem seja necessário
-    protected $fillable = ['data_pedido'];
+    protected $fillable = ['data_pedido', 'fk_id_user'];
 
     public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'fk_id_user');
     }
 
     public function items()
