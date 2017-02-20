@@ -33,8 +33,8 @@
                                     </td>
                                     <td>
                                         @if($item->elemento_type === 'App\Promocao')
-                                        {{'Promocao: '.$item->elemento->titulo}}
-                                        @foreach($item->elemento->produtos as $produto)
+                                            {{'Promocao: '.$item->elemento->titulo}}
+                                            @foreach($item->elemento->produtos as $produto)
                                                 <br/> {{$produto->nome_produto}}
                                             @endforeach
                                         @else
@@ -57,5 +57,7 @@
                         </table>
                     </div>
                 </div>
-            </div></div></div>
+            </div>
+        </div>
+    </div>
 @endsection

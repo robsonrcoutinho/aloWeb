@@ -8,7 +8,7 @@ class PedidoController extends Controller
 {
     public function index()
     {
-        $pedidos = Pedido::with('items', 'usuario')->get();
+        $pedidos = Pedido::with('usuario')->get();
         return view('pedido.index', compact('pedidos'));
     }
 
@@ -48,5 +48,3 @@ class PedidoController extends Controller
         return $total;
     }
 }
-
-

@@ -27,9 +27,10 @@
                             @foreach($pedidos as $pedido)
                                 <tr>
                                     <td align="center">
-                                        <a href="{{route('pedidos.detalhar',['id'=>$pedido->id])}}" class="btn btn-default"><em class="fa fa-eye"></em></a>
+                                        <a href="{{route('pedidos.detalhar',['id'=>$pedido->id])}}"
+                                           class="btn btn-default"><em class="fa fa-eye"></em></a>
                                     </td>
-                                    <td>{{$pedido->data_pedido}}</td>
+                                    <td>{{date('d/m/Y',strtotime($pedido->data_pedido))}}</td>
                                     <td>{{$pedido->usuario->name}}</td>
                                 </tr>
                             @endforeach
@@ -37,5 +38,7 @@
                         </table>
                     </div>
                 </div>
-            </div></div></div>
+            </div>
+        </div>
+    </div>
 @endsection
