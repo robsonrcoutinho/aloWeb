@@ -44,7 +44,8 @@
 
                     <ul class="nav navbar-nav pull-right">
                         <li class=""><a href="#">Mudar Senha</a></li>
-                        <li class=""><a href="#">Sair</a></li>
+                        <li class=""><a href="{{ route('logout') }}">Sair</a></li>
+                        {{ csrf_field() }}
                     </ul>
                 </div>
             </div>
