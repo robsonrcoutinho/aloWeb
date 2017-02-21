@@ -2,7 +2,11 @@
 
 Route::get('/', function () {
     return view('main');
-})->name('main');
+})->name('main')->middleware('auth');
+
+Route::get('home', function () {
+    return redirect('main')->middleware('auth');
+});
 
 /*Autenticação*/
 Route::get('logout', ['as'=>'logout','uses'=>'Auth\LoginController@logout']);
