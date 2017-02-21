@@ -11,6 +11,10 @@
                             <div class="col col-xs-6">
                                 <h3 class="panel-title">Detalhes de Pedido</h3>
                             </div>
+                            <div class="col col-xs-6 text-right">
+                                <a class="btn btn-sm btn-primary btn-create"
+                                   href="{{route('pedidos.aceitar',['id'=>$pedido->id] )}}">Aceitar</a>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-body">

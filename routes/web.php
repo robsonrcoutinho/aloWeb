@@ -31,8 +31,8 @@ Route::group(['prefix' => 'produtos'], function(){
 
 Route::group(['prefix' => 'pedidos'], function(){
     Route::get('',['as'=>'pedidos','uses'=>'PedidoController@index'])->middleware('auth');
-
-
+    Route::get('{id}/detalhar',['as'=>'pedidos.detalhar','uses'=>'PedidoController@detalhar']);
+    Route::get('{id}/aceitar',['as'=>'pedidos.aceitar','uses'=>'PedidoController@aceitar']);
 });
 
 Route::group(['prefix' => 'marcas'], function(){
