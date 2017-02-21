@@ -21,8 +21,9 @@
                             <thead>
                             <tr>
                                 <th><em class="fa"></em></th>
-                                <th>Nome</th>
+                                <th>Usuário</th>
                                 <th>E-mail</th>
+                                <th>Empresa</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,6 +35,7 @@
                                     </td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->nome_fantasia}}</td>
 
                                 </tr>
                             @endforeach

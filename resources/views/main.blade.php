@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="{!! asset('images/icon_tab.png') !!}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     {!! Html::style('css/app.css') !!}
-
+    {!! Html::style('css/style.css') !!}
     <title>S. C. Atacado</title>
 
 </head>
@@ -39,12 +40,15 @@
                         <li><a href="{{route('categorias')}}">Categorias</a></li>
                         <li><a href="{{route('estoques')}}">Estoque</a></li>
                         <li><a href="{{route('promocaos')}}">Promoções</a></li>
+                        <li><a href="{{route('users')}}">Gerenciar Usuários</a></li>
                     </ul>
 
-
                     <ul class="nav navbar-nav pull-right">
-                        <li class=""><a href="#">Mudar Senha</a></li>
-                        <li class=""><a href="{{ route('logout') }}">Sair</a></li>
+                        @if(Auth::check())
+                            <li class=""><a class="nome-user-menu" href="">{{Auth::user()->name}}</a></li>
+                        @endif
+                        <li class="sair"><a class="red-btn-sair" href="{{ route('logout') }}">
+                                <span class="glyphicon glyphicon-log-out"></span>Sair</a></li>
                         {{ csrf_field() }}
                     </ul>
                 </div>
