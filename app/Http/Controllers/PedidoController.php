@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\PedidoHelper;
 use App\Pedido;
 
 class PedidoController extends Controller
@@ -37,73 +38,29 @@ class PedidoController extends Controller
         return 'excluir';
     }
 
+    /** Método que encaminha para página de exibição de detalhes de pedido
+     * @param $id int identificador do pedido
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detalhar($id)
     {
-        $pedido = Pedido::find($id);
-        $total = number_format($this->total($pedido), 2, ',', '.');
-        return view('pedido.detalhar', compact('pedido', 'total'));
+        $pedido = Pedido::find($id);                                        //Busca pedido pelo id
+        $total = number_format(PedidoHelper::total($pedido), 2, ',', '.');  //Solicita cálculo do total do pedido
+        return view('pedido.detalhar', compact('pedido', 'total'));         //Encaminha para view de detalhamento
     }
 
+    /**Método que realiza aceite de pedido do cliente
+     * @param $id int identificador do pedido
+     */
     public function aceitar($id)
     {
-        $pedido = Pedido::find($id);
-        $pse = $this->verificarEstoque($pedido);
-        if (!$pse->isEmpty()):
-            $mensagem = 'Falta em estoque:\n';
-            foreach ($pse as $p):
-                $mensagem .= $p->nome_produto.'\n';
-            endforeach;
-            return $this->mensagem($mensagem, back()->getTargetUrl());
+        $pedido = Pedido::find($id);                                                    //Busca pedido pelo id
+        $pse = PedidoHelper::verificarEstoque($pedido);                                 //Verifica estoque
+        if (!$pse->isEmpty()):                                                          //Se falta produto em estoque
+            $mensagem = 'Falta em estoque:\n' . $pse->implode('nome_produto', '\n');    //Criar mensagem com relação de itens faltantes
+            PedidoHelper::mensagem($mensagem, back()->getTargetUrl());           //Exibe mensagem e redireciona para página anterior
         endif;
-        $this->baixarEstoque($pedido);
-
-        return redirect('pedidos');
-    }
-
-    private function total(Pedido $pedido)
-    {
-        $total = 0;
-        foreach ($pedido->items as $item):
-            $total += $item->elemento->valor * $item->quantidade;
-        endforeach;
-        return $total;
-    }
-
-    private function verificarEstoque(Pedido $pedido)
-    {
-        $estoques = \App\Estoque::with('produto')->get();
-        $pse = collect();
-        foreach ($pedido->items as $item):
-            if ($item->elemento instanceof \App\Promocao):
-                foreach ($item->elemento->produtos as $k => $produto):
-                    $estoque = ($estoques->where('fk_id_produto', $produto->id)->first());
-                    if ($estoque->quantidade >= $item->quantidade):
-                        $estoque->quantidade -= $item->quantidade;
-                    else:
-                        $pse->push($produto);
-                    endif;
-                endforeach;
-            else:
-                $estoque = ($estoques->where('fk_id_produto', $item->elemento->id)->first());
-                if ($estoque->quantidade >= $item->quantidade):
-                    $estoque->quantidade -= $item->quantidade;
-                else:
-                    $pse->push($item->elemento);
-                endif;
-            endif;
-        endforeach;
-        return $pse;
-    }
-
-    private function baixarEstoque(Pedido $pedido){
-
-    }
-
-    private function mensagem($texto, $rota)
-    {
-        echo "<script>
-                alert('$texto');
-                window.location='$rota';
-                </script>";
+        PedidoHelper::baixarEstoque($pedido);                                           //Dá baixa no estoque
+        PedidoHelper::mensagem('Pedido aceito com sucesso.', route('pedidos'));  //Exibe mensagem de sucesso e redireciona para página de pedidos                                               //Redireciona para página de pedidos
     }
 }
