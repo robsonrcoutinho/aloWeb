@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 {!! Form::label ('password_confirmation', 'Confirmar senha: ',['class'=>'control-label col-xs-2']) !!}
                                 <div class="col-xs-5">
-                                    {!! Form::password('password', null, ['class'=>'form-control']) !!}
+                                    {!! Form::password('password_confirmation', null, ['class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">

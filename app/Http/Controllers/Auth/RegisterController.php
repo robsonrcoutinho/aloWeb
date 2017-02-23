@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -51,6 +51,14 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+        ],[
+            'required'=>'Campo :attribute precisa ser informado',
+            'confirmed'=>'Campo :attribute precisa ser confirmado',
+            'max'=>'Campo :attribute pode ter no maximo :max caracteres',
+            'min'=>'Campo :attribute deve ter no minimo :min caracteres'
+        ],[
+            'name'=>'nome',
+            'password'=>'senha'
         ]);
     }
 
@@ -66,6 +74,13 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'razao_social' => $data['razao_social'],
+            'nome_fantasia' => $data['nome_fantasia'],
+            'rua' => $data['rua'],
+            'cidade' => $data['cidade'],
+            'uf' => $data['uf'],
+            'cnpj_cpf' => $data['cnpj_cpf'],
+            'telefone' => $data['telefone'],
         ]);
     }
 }

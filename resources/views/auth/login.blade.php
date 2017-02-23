@@ -26,7 +26,7 @@
         <div class="logo">S.C. Atacado</div>
         <div class="navbar navbar-static-top">
             <div class="btn-grps pull-right">
-                <a href="#" class="pink-btn">Registrar</a>
+                <a href="{{route('register')}}" class="pink-btn">Registrar</a>
             </div>
         </div>
     </header>
