@@ -56,7 +56,7 @@
                     <div class="btn-sub">
                         <button class="pink-btn">Entrar</button>
             <span>
-              <a href="#">Esqueceu sua senha?</a>
+              <a class="btn btn-link pull-right" href="password/reset">Esqueceu sua senha?</a>
             </span>
                     </div>
 
