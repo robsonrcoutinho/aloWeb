@@ -83,5 +83,3 @@ Route::group(['prefix' => 'users'], function(){
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
