@@ -5,7 +5,7 @@
     <div class="login-middle">
         <div class="login-details">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <div class="panel-heading">Recuperar Senha</div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
