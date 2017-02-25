@@ -58,23 +58,13 @@ class RegisterController extends Controller
             'uf'=>'required|size:2|alpha',
             'telefone'=>'required|digits_between:8,14|numeric',
             'cnpj_cpf'=>'required|digits_between:11,14|numeric'
-        ],[
-            'alpha'=>'Campo :attribute deve ter apenas letras',
-            'between'=>'Campo :attribute deve ter entre :min e :max caracteres',
-            'confirmed'=>'Campo :attribute precisa ser confirmado',
-            'digits_between'=>'Campo :attribute deve ter entre :min e :max algarismos',
-            'email' => 'Campo :attribute deve ter um email valido',
-            'max'=>'Campo :attribute pode ter no maximo :max caracteres',
-            'min'=>'Campo :attribute deve ter no minimo :min caracteres',
-            'numeric'=>'Campo :attribute deve ter apenas algarismos',
-            'required'=>'Campo :attribute precisa ser informado',
-            'size'=>'Campo :attribute deve ter :size caracteres',
-        ],[
+        ],[ ],[
             'name'=>'nome',
             'password'=>'senha',
-            'razao_social'=>'Razao Social',
+            'razao_social'=>'Raz&atilde;o Social',
             'nome_fantasia'=>'Nome Fantasia',
-            'cnpj_cpf'=>'CNPJ/CPF'
+            'cnpj_cpf'=>'CNPJ/CPF',
+            'uf'=>'UF'
         ]);
     }
 
