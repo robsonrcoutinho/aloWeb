@@ -36,7 +36,7 @@
                             {!! Form::text('uf', old('uf'), ['class'=>'form-control','placeholder'=>'UF']) !!}
                     </div>
                     <div class="form-group">
-                            {!! Form::text('cnpj_cpf', old('cnpj_cpf'), ['class'=>'form-control','placeholder'=>'CPF/CNPJ']) !!}
+                            {!! Form::text('cnpj_cpf', old('cnpj_cpf'), ['class'=>'form-control','placeholder'=>'CNPJ/CPF']) !!}
                     </div>
                     <div class="form-group">
                             {!! Form::text('telefone', old('telefone'), ['class'=>'form-control','placeholder'=>'Telefone']) !!}
