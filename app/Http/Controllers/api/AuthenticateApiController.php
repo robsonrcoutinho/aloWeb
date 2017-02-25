@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthenticateApiController extends Controller
 {
@@ -23,6 +25,13 @@ class AuthenticateApiController extends Controller
         }
         // Tudo certo. assim retornar o token
         return response()->json(compact('token'));
+    }
+
+    public function logout(Request $request)
+    {
+        $this->validate($request, ['token' => 'required']);
+        JWTAuth::invalidate($request->input('token'));
+        return response()->json(['token_invalidado' => 'token_delete_successo'], 500);
     }
 
 }

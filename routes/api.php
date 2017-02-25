@@ -19,9 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
-    $api->group(['namespace' => 'app\routes\api'], function ($api) {
-        $api->get('testeapi',function(){
-            return response()->json(['teste']);
-        });
-    });
+        $api->post('login', 'App\Http\Controllers\api\AuthenticateApiController@authenticate');
+        $api->post('logout', 'App\Http\Controllers\api\AuthenticateApiController@logout');
+
 });
