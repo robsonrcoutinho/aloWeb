@@ -179,6 +179,11 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        //Configuração dingo API
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        //Configuração JWT
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +241,8 @@ return [
         'Pedido' => app\Pedido::class,
         'Produto' =>app\Produto::class,
         'User' => app\User::class,
+
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
 
     ],

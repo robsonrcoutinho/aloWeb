@@ -21,7 +21,7 @@
     <div class="logo">S.C. Atacado</div>
     <div class="navbar navbar-static-top">
         <div class="btn-grps pull-right">
-
+            <a href="{{route('login')}}" class="pink-btn">Login</a>
         </div>
     </div>
 </header>
