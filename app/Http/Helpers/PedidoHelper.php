@@ -84,6 +84,28 @@ class PedidoHelper
         endforeach;
     }
 
+    /** Método que realiza restabelecimento de produtos no estoque com base no pedido passado
+     * @param Pedido $pedido
+     */
+    public static function restabelecerEstoque(Pedido $pedido)
+    {
+        $estoques = \App\Estoque::with('produto')->get();       //Busta estoque de produtos
+        foreach ($pedido->items as $item):                      //Percorre itens do pedido
+            if ($item->elemento instanceof \App\Promocao):      //Se elemento for promoção
+                foreach ($item->elemento->produtos as $produto)://Percorre produtos
+                    //Busca estoque de produto
+                    $estoque = $estoques->where('fk_id_produto', $produto->id)->first();
+                    $estoque->quantidade += $item->quantidade;  //Incrementa a quantidade do item da quantidade do estoque
+                    $estoque->save();                           //Salva alteração de estoque
+                endforeach;
+            else:
+                //Busca estoque de produto
+                $estoque = $estoques->where('fk_id_produto', $item->elemento->id)->first();
+                $estoque->quantidade += $item->quantidade;      //Incrementa a quantidade do item da quantidade do estoque
+                $estoque->save();                               //Salva alteração de estoque
+            endif;
+        endforeach;
+    }
     /**Método que exibe mensagem e redireciona página
      * @param $texto string texto a ser exibido na mensagem
      * @param $rota string caminho para redirecionamento

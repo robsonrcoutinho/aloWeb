@@ -75,9 +75,21 @@ class PedidoController extends Controller
 
     public function cancelar($id)
     {
-        $pedido = Pedido::find($id);                                                    //Busca pedido pelo id
-        if($pedido->status!='pendente'):
-            //Reabastecer estoque com produtos separados
+        $pedido = Pedido::find($id);                        //Busca pedido pelo id
+        if($pedido->status=='cancelado'):                   //Se pedido já  estiver cancelado
+            //Envia mensagem informando que já está cancelado e retorna a página de exibição
+            PedidoHelper::mensagem('Pedido j\u00e1 est\u00e1 cancelado.', back()->getTargetUrl());
+            return;
+        elseif($pedido->status=='despachado'):              //Se pedido já foi despachado
+            //Envia mensagem informando que pedido não pode ser cancelado e retorna a página de exibição
+            PedidoHelper::mensagem('Pedido n\u00e3o pode ser cancelado.', back()->getTargetUrl());
+            return;
+        elseif($pedido->status!='pendente'):                //Se status do pedido for diferente de pendente
+                PedidoHelper::restabelecerEstoque($pedido); //Restabelece estoque com produtos do pedido
         endif;
+        $pedido->status='cancelado';                        //Altera status do pedido para cancelado
+        $pedido->save();                                    //Salva alteração em pedido
+        //Envia mensagem de que cancelamento foi feito e retorna a tela que lista pedidos
+        PedidoHelper::mensagem('Pedido cancelado com sucesso', route('pedidos'));
     }
 }
