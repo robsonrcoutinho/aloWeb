@@ -21,6 +21,7 @@
                                 <th><em class="fa"></em></th>
                                 <th>Data do Pedido</th>
                                 <th>Cliente</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,7 @@
                                     </td>
                                     <td>{{date('d/m/Y',strtotime($pedido->data_pedido))}}</td>
                                     <td>{{$pedido->usuario->name}}</td>
+                                    <td>{{$pedido->status}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

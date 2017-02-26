@@ -33,6 +33,8 @@ Route::group(['prefix' => 'pedidos'], function(){
     Route::get('',['as'=>'pedidos','uses'=>'PedidoController@index'])->middleware('auth');
     Route::get('{id}/detalhar',['as'=>'pedidos.detalhar','uses'=>'PedidoController@detalhar']);
     Route::get('{id}/aceitar',['as'=>'pedidos.aceitar','uses'=>'PedidoController@aceitar']);
+    Route::get('{id}/{status}/alterarStatus',['as'=>'pedidos.alterarStatus','uses'=>'PedidoController@alterarStatus']);
+    Route::get('{id}/cancelar',['as'=>'pedidos.cancelar','uses'=>'PedidoController@cancelar']);
 });
 
 Route::group(['prefix' => 'marcas'], function(){

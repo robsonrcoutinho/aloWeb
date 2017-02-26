@@ -1,7 +1,8 @@
 @extends('main')
 @section('content')
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -12,8 +13,20 @@
                                 <h3 class="panel-title">Detalhes de Pedido</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
+                                @switch($pedido->status)
+                                @case('pendente')
                                 <a class="btn btn-sm btn-primary btn-create"
                                    href="{{route('pedidos.aceitar',['id'=>$pedido->id] )}}">Aceitar</a>
+                                @breakswitch
+                                @case('separado')
+                                <a class="btn btn-sm btn-success btn-create"
+                                   href="{{route('pedidos.alterarStatus',['id'=>$pedido->id,'status'=>'despachado'] )}}">Despachar</a>
+                                @breakswitch
+                                @endswitch
+                                @if($pedido->status!='despachado'&& $pedido->status!='cancelado')
+                                    <a class="btn btn-sm btn-danger"
+                                       href="{{route('pedidos.cancelar',['id'=>$pedido->id] )}}">Cancelar</a>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -58,9 +58,26 @@ class PedidoController extends Controller
         $pse = PedidoHelper::verificarEstoque($pedido);                                 //Verifica estoque
         if (!$pse->isEmpty()):                                                          //Se falta produto em estoque
             $mensagem = 'Falta em estoque:\n' . $pse->implode('nome_produto', '\n');    //Criar mensagem com relação de itens faltantes
-            PedidoHelper::mensagem($mensagem, back()->getTargetUrl());           //Exibe mensagem e redireciona para página anterior
+            PedidoHelper::mensagem($mensagem, back()->getTargetUrl());                  //Exibe mensagem e redireciona para página anterior
         endif;
         PedidoHelper::baixarEstoque($pedido);                                           //Dá baixa no estoque
-        PedidoHelper::mensagem('Pedido aceito com sucesso.', route('pedidos'));  //Exibe mensagem de sucesso e redireciona para página de pedidos                                               //Redireciona para página de pedidos
+        $pedido->status = 'separado';                                                     //Altera o status do pedido para separado
+        $pedido->save();                                                                //Salva alteração em pedido
+        PedidoHelper::mensagem('Pedido aceito com sucesso.', route('pedidos'));         //Exibe mensagem de sucesso e redireciona para página de pedidos
+    }
+
+    public function alterarStatus($id, $status)
+    {
+        Pedido::find($id)->update(['status' => $status]);                                 //Busca pedido pelo id e altera status
+        //Exibe mensagem de alteração de status e redireciona para página de pedidos
+        PedidoHelper::mensagem('Status do pedido foi alterado para:\n' . $status, route('pedidos'));
+    }
+
+    public function cancelar($id)
+    {
+        $pedido = Pedido::find($id);                                                    //Busca pedido pelo id
+        if($pedido->status!='pendente'):
+            //Reabastecer estoque com produtos separados
+        endif;
     }
 }
