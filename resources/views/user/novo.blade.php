@@ -81,15 +81,15 @@
                             </div>
 
                             <div class="form-group">
-                                {!! Form::label ('password', 'Senha: ',['class'=>'control-label col-xs-2']) !!}
+                                <label for="password" class="control-label col-xs-2">Senha: </label>
                                 <div class="col-xs-5">
-                                    {!! Form::password('password', null, ['class'=>'form-control']) !!}
+                                    <input type="password" class="form-control" name="password" id="password"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label ('password_confirmation', 'Confirmar senha: ',['class'=>'control-label col-xs-2']) !!}
+                                <label for="password_confirmation" class="control-label col-xs-2">Confirmar senha: </label>
                                 <div class="col-xs-5">
-                                    {!! Form::password('password_confirmation', null, ['class'=>'form-control']) !!}
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation"/>
                                 </div>
                             </div>
                             <div class="form-group">

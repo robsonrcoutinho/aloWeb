@@ -21,7 +21,8 @@
                             {!! Form::text('email', old('email'), ['class'=>'form-control','placeholder'=>'E-mail']) !!}
                     </div>
                     <div class="form-group">
-                            {!! Form::text('razao_social', old('razao_social'), ['class'=>'form-control', 'placeholder'=>'Razao Social']) !!}
+                           <!-- {!! Form::text('razao_social', old('razao_social'), ['class'=>'form-control', 'placeholder'=>'Razao Social']) !!} -->
+                        <input type="text" class="form-control" name="razao_social" value="{{old('razao_social')}}" placeholder="Raz&atilde;o Social">
                     </div>
                     <div class="form-group">
                             {!! Form::text('nome_fantasia', old('nome_fantasia'), ['class'=>'form-control','placeholder'=>'Nome Fantasia']) !!}
