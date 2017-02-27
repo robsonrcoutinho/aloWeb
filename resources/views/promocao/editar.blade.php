@@ -6,7 +6,7 @@
 
                 <div class="panel panel-default">
                     <ol class="breadcrumb panel-heading">
-                        <li><a href="{{ route('promocaos') }}" value="">Promocao</a></li>
+                        <li><a href="{{ route('promocaos') }}">Promocao</a></li>
                         <li class="active">Editar</li>
                     </ol>
 
@@ -14,11 +14,11 @@
                         {!! Form::open(['route'=>['promocaos.alterar', $promocao->id], 'method'=>'put']) !!}
                         {{ csrf_field() }}
                         @if($errors->any())
-                            <ul class="alert alert-warning">
+                            <div class="alert alert-warning">
                                 @foreach(collect($errors->all())->unique() as $error)
                                     <li>{{$error}}</li>
                                 @endforeach
-                            </ul>
+                            </div>
                         @endif
 
                         <div class="form-group">
@@ -80,5 +80,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

@@ -24,6 +24,7 @@
                                 <th>Usuário</th>
                                 <th>E-mail</th>
                                 <th>Empresa</th>
+                                <th>Papel</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->nome_fantasia}}</td>
-
+                                    <td>{{$user->role}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

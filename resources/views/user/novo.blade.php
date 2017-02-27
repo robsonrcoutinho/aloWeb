@@ -43,6 +43,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                {!! Form::label ('role', 'Papel: ',[ 'class'=>'control-label col-xs-2']) !!}
+                                <div class="col-xs-5">
+                                    {{Form::select('role',$roles,null, ['id','class'=>'form-control'])}}
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label ('rua', 'Rua: ',['class'=>'control-label col-xs-2']) !!}
                                 <div class="col-xs-5">
                                     {!! Form::text('rua', old('rua'), ['class'=>'form-control']) !!}
@@ -88,7 +94,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-10">
-                            <button class="btn btn-primary">Salvar</button>
+                                    <button class="btn btn-primary">Salvar</button>
                                 </div>
                             </div>
                         </form>

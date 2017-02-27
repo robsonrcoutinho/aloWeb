@@ -14,13 +14,12 @@
                         {!! Form::open(['route'=>['users.alterar', $user->id], 'method'=>'put']) !!}
                         {{ csrf_field() }}
                         @if($errors->any())
-                            <ul class="alert alert-warning">
+                            <div class="alert alert-warning">
                                 @foreach(collect($errors->all())->unique() as $error)
                                     <li>{{$error}}</li>
                                 @endforeach
-                            </ul>
+                            </div>
                         @endif
-
                         <div class="form-group">
                             {!! Form::hidden ('id', $user->id, ['class'=>'form-control']) !!}
                         </div>
@@ -46,6 +45,12 @@
                             {!! Form::label ('nome_fantasia', 'Nome Fantasia: ',['class'=>'control-label col-xs-2']) !!}
                             <div class="col-xs-5">
                                 {!! Form::text('nome_fantasia', $user->nome_fantasia, ['class'=>'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label ('role', 'Papel ',[ 'class'=>'control-label col-xs-2']) !!}
+                            <div class="col-xs-5">
+                                {{Form::select('role',$roles,$user->role, ['id','class'=>'form-control'])}}
                             </div>
                         </div>
                         <div class="form-group">
@@ -89,7 +94,7 @@
                         <div class="form-group">
                             {!! Form::label ('password_confirmation', 'Confirmar senha: ',['class'=>'control-label col-xs-2']) !!}
                             <div class="col-xs-5">
-                                {!! Form::password('password', null, ['class'=>'form-control']) !!}
+                                {!! Form::password('password_confirmation', null, ['class'=>'form-control']) !!}
                             </div>
                         </div>
                         <div class="form-group">

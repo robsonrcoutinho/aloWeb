@@ -14,8 +14,7 @@ class AlterUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-        $table->enum('role', ['admin','cliente','usuario']);
-
+        $table->enum('role', ['cliente','usuario','admin'])->after('email');
         });
     }
 
@@ -26,6 +25,8 @@ class AlterUser extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 }
