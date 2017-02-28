@@ -106,6 +106,16 @@ class PedidoHelper
             endif;
         endforeach;
     }
+
+    /** Método que altera status de pedido
+     * @param $id int identificador do pedido
+     * @param $status string novo status do pedido
+     */
+    public static function alterarStatus($id, $status)
+    {
+        Pedido::find($id)->update(['status' => $status]);                                   //Busca pedido pelo id e altera status
+        self::mensagem('Status do pedido foi alterado para:\n' . $status, route('pedidos'));//Exibe mensagem de alteração de status e redireciona para página de pedidos
+    }
     /**Método que exibe mensagem e redireciona página
      * @param $texto string texto a ser exibido na mensagem
      * @param $rota string caminho para redirecionamento

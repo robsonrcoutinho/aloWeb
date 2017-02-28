@@ -12,8 +12,10 @@
                                 <h3 class="panel-title">Listagem de Produtos</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
+                                @can('salvar', App\Produto::class)
                                 <a class="btn btn-sm btn-primary btn-create"
                                    href="{{route('produtos.novo')}}">Criar Novo</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -34,8 +36,12 @@
                             @foreach($produtos as $prod)
                             <tr>
                                 <td align="center">
+                                    @can('alterar', App\Produto::class)
                                     <a class="btn btn-default" href="{{route('produtos.editar',['id'=>$prod->id])}}"><em class="fa fa-pencil"></em></a>
+                                    @endcan
+                                    @can('excluir', App\Produto::class)
                                     <a class="btn btn-danger" href="{{route('produtos.excluir',['id'=>$prod->id])}}"><em class="fa fa-trash"></em></a>
+                                    @endcan
                                 </td>
 
                                 <td align="center">{{Html::image($prod->imagem,'alt',

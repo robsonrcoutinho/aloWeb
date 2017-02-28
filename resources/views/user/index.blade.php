@@ -11,7 +11,9 @@
                                 <h3 class="panel-title">Listagem de Usuarios</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
+                                @can('salvar', App\User::class)
                                 <a href="{{ route('users.novo')}}" class="btn btn-sm btn-primary btn-create">Criar novo</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -31,8 +33,12 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td align="center">
+                                        @can('alterar', App\User::class)
                                         <a href="{{route('users.editar',['id'=>$user->id])}}" class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                        @endcan
+                                        @can('excluir', App\User::class)
                                         <a href="{{route('users.excluir',['id'=>$user->id])}}" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                        @endcan
                                     </td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>

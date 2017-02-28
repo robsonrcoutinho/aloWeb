@@ -50,7 +50,20 @@ class UserController extends Controller
     {
         $this->validate($request,
             ['email' => 'unique:users,email,' . $id]);          //Valida e-mail de usuário
-        User::find($id)->update($request->all());
+        User::find($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'razao_social' => $request->razao_social,
+            'nome_fantasia' => $request->nome_fantasia,
+            'role' => $request->role,
+            'rua' => $request->rua,
+            'cidade' => $request->cidade,
+            'uf' => $request->uf,
+            'cnpj_cpf' => $request->cnpj_cpf,
+            'telefone' => $request->telefone
+        ]);
+
         return redirect('users');
     }
 
