@@ -21,5 +21,5 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
         $api->post('login', 'App\Http\Controllers\api\AuthenticateApiController@authenticate');
         $api->post('logout', 'App\Http\Controllers\api\AuthenticateApiController@logout');
-
+        $api->post('resetEmail','App\Http\Controllers\api\AuthenticateApiController@resetEmail');
 });

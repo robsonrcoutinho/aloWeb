@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Mail\Message;
 
 class AuthenticateApiController extends Controller
 {
@@ -33,5 +35,29 @@ class AuthenticateApiController extends Controller
         JWTAuth::invalidate($request->input('token'));
         return response()->json(['token_invalidado' => 'token_delete_successo'], 500);
     }
+
+
+    public function resetEmail(Request $request)
+    {
+
+        $response = Password::sendResetLink($request->only('email'), function(Message $message){
+            $message->subject($this->getEmailSubject());
+
+        });
+
+        switch ($response) {
+            case Password::RESET_LINK_SENT:
+                return response()->json(['status'=> 'sucesso'],500);
+
+            case Password::INVALID_USER:
+                return response()->json(['status'=> 'falha',401]);
+        }
+    }
+
+    protected function getEmailSubject()
+    {
+        return isset($this->subject) ? $this->subject : 'S.C. Atacado';
+    }
+
 
 }
