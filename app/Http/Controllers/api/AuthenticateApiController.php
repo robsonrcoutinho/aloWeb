@@ -47,10 +47,10 @@ class AuthenticateApiController extends Controller
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return response()->json(['status'=> 'sucesso'],500);
+                return response()->json(['status'=> 'sucesso']);
 
             case Password::INVALID_USER:
-                return response()->json(['status'=> 'falha',401]);
+                return response()->json(['status'=> 'falha']);
         }
     }
 
