@@ -34,13 +34,27 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{route('main')}}" class="">Home</a></li>
+                        @can('visualizar', App\Pedido::class)
                         <li><a href="{{route('pedidos')}}">Pedidos</a></li>
+                        @endcan
+                        @can('visualizar', App\Produto::class)
                         <li><a href="{{route('produtos')}}">Produtos</a></li>
+                        @endcan
+                        @can('visualizar', App\Marca::class)
                         <li><a href="{{route('marcas')}}">Marcas</a></li>
+                        @endcan
+                        @can('visualizar', App\Categoria::class)
                         <li><a href="{{route('categorias')}}">Categorias</a></li>
+                        @endcan
+                        @can('visualizar', App\Estoque::class)
                         <li><a href="{{route('estoques')}}">Estoque</a></li>
+                        @endcan
+                        @can('visualizar', App\Promocao::class)
                         <li><a href="{{route('promocaos')}}">Promoções</a></li>
+                        @endcan
+                        @can('visualizar', App\User::class)
                         <li><a href="{{route('users')}}">Gerenciar Usuários</a></li>
+                        @endcan
                     </ul>
 
                     <ul class="nav navbar-nav pull-right">
@@ -56,7 +70,9 @@
         </nav>
     </div>
 </div>
-</BR></BR></BR>
+<br />
+<br />
+<br />
 
 @yield('content')
 

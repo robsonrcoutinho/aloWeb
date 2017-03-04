@@ -13,8 +13,10 @@
                                 <h3 class="panel-title">Listagem de Promoções</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
+                                @can('salvar', App\Promocao::class)
                                 <a class="btn btn-sm btn-primary btn-create"
                                    href="{{route('promocaos.novo')}}">Criar Novo</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
@@ -33,10 +35,13 @@
                             @foreach($promocaos as $promocao)
                             <tr>
                                 <td align="center">
+                                    @can('alterar', App\Promocao::class)
                                     <a class="btn btn-default" href="{{route('promocaos.editar',['id'=>$promocao->id])}}"><em class="fa fa-pencil"></em></a>
+                                    @endcan
+                                    @can('excluir', App\Promocao::class)
                                     <a class="btn btn-danger" href="{{route('promocaos.excluir',['id'=>$promocao->id])}}"><em class="fa fa-trash"></em></a>
+                                    @endcan
                                 </td>
-
                                 <td>{{$promocao->titulo}}</td>
                                 <td>{{$promocao->valor}}</td>
                                 <td>

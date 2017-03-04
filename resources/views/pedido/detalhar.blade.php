@@ -13,20 +13,20 @@
                                 <h3 class="panel-title">Detalhes de Pedido</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                                @switch($pedido->status)
-                                @case('pendente')
+
+
+                                @can('aceitar',$pedido)
                                 <a class="btn btn-sm btn-primary btn-create"
                                    href="{{route('pedidos.aceitar',['id'=>$pedido->id] )}}">Aceitar</a>
-                                @breakswitch
-                                @case('separado')
+                                @endcan
+                                @can('despachar',$pedido)
                                 <a class="btn btn-sm btn-success btn-create"
-                                   href="{{route('pedidos.alterarStatus',['id'=>$pedido->id,'status'=>'despachado'] )}}">Despachar</a>
-                                @breakswitch
-                                @endswitch
-                                @if($pedido->status!='despachado'&& $pedido->status!='cancelado')
+                                   href="{{route('pedidos.despachar',['id'=>$pedido->id] )}}">Despachar</a>
+                                @endcan
+                                @can('cancelar', $pedido)
                                     <a class="btn btn-sm btn-danger"
                                        href="{{route('pedidos.cancelar',['id'=>$pedido->id] )}}">Cancelar</a>
-                                @endif
+                                @endcan
                             </div>
                         </div>
                     </div>

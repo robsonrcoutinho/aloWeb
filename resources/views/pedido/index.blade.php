@@ -13,7 +13,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
                         <table class="table table-striped table-bordered table-list">
                             <thead>
@@ -28,8 +27,10 @@
                             @foreach($pedidos as $pedido)
                                 <tr>
                                     <td align="center">
+                                        @can('detalhar',App\Pedido::class)
                                         <a href="{{route('pedidos.detalhar',['id'=>$pedido->id])}}"
                                            class="btn btn-default"><em class="fa fa-eye"></em></a>
+                                        @endcan
                                     </td>
                                     <td>{{date('d/m/Y',strtotime($pedido->data_pedido))}}</td>
                                     <td>{{$pedido->usuario->name}}</td>
