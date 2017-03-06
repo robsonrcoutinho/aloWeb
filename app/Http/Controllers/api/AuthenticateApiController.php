@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Message;
+use App\User;
 
 class AuthenticateApiController extends Controller
 {
@@ -57,6 +58,30 @@ class AuthenticateApiController extends Controller
     protected function getEmailSubject()
     {
         return isset($this->subject) ? $this->subject : 'S.C. Atacado';
+    }
+
+
+    protected function create(Request $request)
+    {
+        if($request != null){
+            User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password']),
+                'razao_social' => $request['razao_social'],
+                'nome_fantasia' => $request['nome_fantasia'],
+                'rua' => $request['rua'],
+                'cidade' => $request['cidade'],
+                'uf' => $request['uf'],
+                'cnpj_cpf' => $request['cnpj_cpf'],
+                'telefone' => $request['telefone'],
+                'role' => 'cliente',
+            ]);
+            return response()->json(['user'=> 'create_sucess']);
+
+        }else{
+            return response()->json(['user'=> 'create_fail']);
+        }
     }
 
 
