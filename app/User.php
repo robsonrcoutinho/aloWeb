@@ -18,11 +18,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'razao_social','nome_fantasia','role','rua','telefone','cidade','uf','cnpj_cpf'];
 
-
-    public function pedidos()
-    {
-        return $this->hasMany(Pedido::class, 'fk_id_user');
-    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -31,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'fk_id_user');
+    }
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'fk_id_user');
+    }
 }
