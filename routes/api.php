@@ -23,4 +23,7 @@ $api->version('v1', function ($api) {
         $api->post('logout', 'App\Http\Controllers\api\AuthenticateApiController@logout');
         $api->post('resetEmail','App\Http\Controllers\api\AuthenticateApiController@resetEmail');
         $api->post('createUser','App\Http\Controllers\api\AuthenticateApiController@create');
+        $api->get('getProdutosMarcas','App\Http\Controllers\api\GetRequisicaoApiController@getProdutosMarcas');
+        $api->get('getCategorias','App\Http\Controllers\api\GetRequisicaoApiController@getCategorias');
+        $api->get('getPromocoes','App\Http\Controllers\api\GetRequisicaoApiController@getPromocoes');
 });
