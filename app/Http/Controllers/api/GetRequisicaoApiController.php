@@ -16,7 +16,7 @@ class GetRequisicaoApiController extends Controller
     {
 
         $produtos = Produto::with('marca')->get();
-        return response()->json(['produtos' => $produtos]);
+        return response()->json([$produtos]);
 
     }
 
