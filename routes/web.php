@@ -72,6 +72,16 @@ Route::group(['prefix' => 'estoques'], function () {
     Route::put('{id}/alterar', ['as' => 'estoques.alterar', 'uses' => 'EstoqueController@alterar'])->middleware('can:alterar,App\Estoque');
 
 });
+Route::group(['prefix' => 'chats'], function () {
+    Route::get('', ['as' => 'chats', 'uses' => 'ChatController@index']);
+    Route::get('chat', ['as' => 'chats.chat', 'uses' => 'ChatController@chat']);
+    Route::post('salvar', ['as' => 'chats.salvar', 'uses' => 'ChatController@salvar']);
+    Route::get('{id}/excluir', ['as' => 'chats.excluir', 'uses' => 'ChatController@excluir']);
+
+    Route::get('listar', ['as' => 'chats.listar', 'uses' => 'ChatController@listar']);
+    //Route::put('{id}/alterar', ['as' => 'chats.alterar', 'uses' => 'ChatController@alterar']);
+
+});
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('', ['as' => 'users', 'uses' => 'UserController@index'])->middleware('can:visualizar,App\User');
