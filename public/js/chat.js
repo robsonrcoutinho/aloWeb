@@ -2,98 +2,65 @@
  * Created by Wilder on 09/03/2017.
  */
 ;
-window.onload = function () {
-    var btnEnviar = document.getElementById("btn-enviar");
-
-    mensagens = document.getElementById("mensagens");
-
-
-    btnEnviar.addEventListener("click", function () {
-      enviar();
-        buscar();
-        return false;
-    });
-
+window.onload = function () {                                   //Execução função no carregamento da janela
+    mensagens = document.getElementById("mensagens");           //Guarda elemento com id "mensagens" em variável
+    var btnEnviar = document.getElementById("btn-enviar");      //Busca elemento com id "btn-enviar" e guarda em variável
+    btnEnviar.addEventListener("click", enviar);                //Passa função enviar para evento click do botão
+    setInterval(buscar, 1000);                                  //Coloca função buscar em lupe com intervalo de 1 segundo
 };
 
-
-function enviar() {
-    var mensagem = document.getElementById("mensagem");
-    var formData = new FormData();
-    if (mensagem.value !== "") {
-        formData.append("mensagem", mensagem.value);
+function enviar() {                                             //Função responsável por fazer envio de mensagem do chat
+    var mensagem = document.getElementById("mensagem");         //Busca elemento com id "mensagem" e guarda em variável
+    var formData = new FormData();                              //Cria FormData para envio de dados via método POST
+    if (mensagem.value !== "") {                                //Verifica se existe mensagem a ser enviada
+        formData.append("mensagem", mensagem.value);            //Guarda valor da mensagem em FormData
+        //Guarda o valor do elemento token em FormDAta
         formData.append("_token", document.getElementsByName("_token").item(0).value);
-        var xhttp;
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                mensagem.value = "";
+        var xhttp = criarXHTTP();                               //Busca instância de objeto request
+        xhttp.onreadystatechange = function () {                //Atribui função para evento de mudança
+            if (xhttp.readyState == 4 && xhttp.status == 200) { //Se solicitação foi respondida com sucesso
+                mensagem.value = "";                            //Limpa texto de mensagem
             }
         };
-        xhttp.open("POST", "salvar", true);
-        xhttp.send(formData);
+        xhttp.open("POST", "salvar", true);                     //Abre a chamada passando o método, a url e se operação é assincrona
+        xhttp.send(formData);                                   //Executa requisição passando FormData com dados
     }
 }
 
-
-/*function executarGet(url, funcao) {
-    var xhttp;
-    xhttp = new XMLHttpRequest();
+function buscar() {
+    var xhttp = criarXHTTP();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            funcao(this);
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var json = JSON.parse(xhttp.responseText);
+            for (var i = 0; i < json.length; i++) {
+                if (!document.getElementById("chat_" + json[i].id)) {
+                    var liMensagem = document.createElement("li");
+                    liMensagem.setAttribute("id", "chat_" + json[i].id);
+                    liMensagem.appendChild(document.createTextNode(json[i].usuario.name.concat(" ", formatarData(json[i].created_at))));
+                    liMensagem.appendChild(document.createElement("br"));
+                    liMensagem.appendChild(document.createTextNode(json[i].mensagem));
+                    liMensagem.appendChild(document.createElement("br"));
+                    mensagens.insertBefore(liMensagem, mensagens.firstElementChild);
+                }
+            }
         }
     };
-    xhttp.open("GET", url, true);
+    xhttp.open("GET", "listar", true);
     xhttp.send();
 }
 
-function executarPost(url, funcao) {
+function formatarData(data) {
+    var dataHora = data.split(" ");
+    var arrayData = dataHora[0].split("-");
+    return arrayData[2].concat("/", arrayData[1]).concat("/", arrayData[0]).concat(" ", dataHora[1]);
+}
+
+function criarXHTTP() {
     var xhttp;
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var text = this.responseText
-            //funcao(this);
-            var t = "";
-            for (i = 0; i > text.length; i++)
-                if (!document.getElementById("chat_" + text[i].id)) {
-                    //mensagens.innerHTML
-                    //mensagens.appendChild()
-                    t += "<li>text[i].usuario.name+' '+text[i].created_at<br />text[i].mensagem</li>"
-                }
-            // mensagens.innerHTML=t+mensagens.innerHTML;
-            mensagens.insertAdjacentHTML('afterend', t);
-
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
-}*/
-
-function buscar() {
-    var xhttp;
-    xhttp = new XMLHttpRequest();
-    alert(xhttp);
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            alert(xhttp.responseText);
-            var json = JSON.parse(xhttp.responseText);
-            var retorno = "";
-            for (var i=json.length-1;i>=0; i--) {
-                retorno+="<li id=chat_"+json[i].id+">"+json[i].usuario.name+" "+json[i].created_at+"<br/>"+json[i].mensagem+"<br/></li>";
-                /*if (!document.getElementById("chat_" + json[i].id)) {
-                   var liMensagem =document.createElement("li");
-                    liMensagem.setAttribute("id","chat_"+json[i].id);
-                    liMensagem.set
-
-                    //alert(json[i].mensagem);
-                }*/
-                //alert(json);
-            }
-            mensagens.innerHTML=retorno;
-        }
-    };
-        xhttp.open("GET", "listar", true);
-        xhttp.send();
+    if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+    } else {
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    return xhttp;
 }
