@@ -2,20 +2,6 @@
 
 namespace App\Providers;
 
-use App\Categoria;
-use App\Estoque;
-use App\Marca;
-use App\Pedido;
-use App\Policies\CategoriaPolicy;
-use App\Policies\EstoquePolicy;
-use App\Policies\MarcaPolicy;
-use App\Policies\PedidoPolicy;
-use App\Policies\ProdutoPolicy;
-use App\Policies\PromocaoPolicy;
-use App\Policies\UserPolicy;
-use App\Produto;
-use App\Promocao;
-use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,13 +12,14 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Categoria::class => CategoriaPolicy::class,
-        Marca::class => MarcaPolicy::class,
-        Produto::class => ProdutoPolicy::class,
-        Promocao::class => PromocaoPolicy::class,
-        Pedido::class => PedidoPolicy::class,
-        Estoque::class => EstoquePolicy::class,
-        User::class => UserPolicy::class
+        'App\Categoria' => 'App\Policies\CategoriaPolicy',
+        'App\Marca' => 'App\Policies\MarcaPolicy',
+        'App\Produto' => 'App\Policies\ProdutoPolicy',
+        'App\Promocao' => 'App\Policies\PromocaoPolicy',
+        'App\Pedido' => 'App\Policies\PedidoPolicy',
+        'App\Estoque' => 'App\Policies\EstoquePolicy',
+        'App\User' => 'App\Policies\UserPolicy',
+        'App\Chat'=>'App\Policies\ChatPolicy'
     ];
 
     /**

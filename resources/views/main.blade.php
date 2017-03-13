@@ -52,6 +52,7 @@
                         @can('visualizar', App\Promocao::class)
                         <li><a href="{{route('promocaos')}}">Promoções</a></li>
                         @endcan
+
                         @can('visualizar', App\User::class)
                         <li><a href="{{route('users')}}">Gerenciar Usuários</a></li>
                         @endcan
@@ -59,6 +60,7 @@
 
                     <ul class="nav navbar-nav pull-right">
                         @if(Auth::check())
+                            <li><a href="{{route('chats')}}">Chat</a></li>
                             <li class=""><a class="nome-user-menu" href="">{{Auth::user()->name}}</a></li>
                         @endif
                         <li class="sair"><a class="red-btn-sair" href="{{ route('logout') }}">

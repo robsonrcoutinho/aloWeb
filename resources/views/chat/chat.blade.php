@@ -15,18 +15,20 @@
                         </div>
                     </div>
 
-
                     <div class="panel-body">
-
-                        <fieldset>
-                            <legend>Mensagem</legend>
-                            <textarea class="form-control" maxlength="255" id="mensagem" name="mensagem"></textarea>
-
-                        </fieldset>
+                        {!! Form::open(['route'=>'chats.inserir']) !!}
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach(collect($errors->all())->unique() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </div>
+                        @endif
+                        <label for="mensagem">Mensagem</label>
+                        <textarea class="form-control" maxlength="255" id="mensagem" name="mensagem"></textarea>
                         <button class="btn btn-primary" id="btn-enviar" value="Enviar">Enviar</button>
-
+                        {!! Form::close() !!}
                         <fieldset>
-
                             <legend>Mensagens</legend>
                             <ul id="mensagens" class="list-unstyled">
                                 @foreach($chats as $chat)

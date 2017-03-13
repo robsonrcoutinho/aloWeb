@@ -31,9 +31,9 @@ Route::group(['prefix' => 'produtos'], function () {
 Route::group(['prefix' => 'pedidos'], function () {
     Route::get('', ['as' => 'pedidos', 'uses' => 'PedidoController@index'])->middleware('can:visualizar,App\Pedido');
     Route::get('{id}/detalhar', ['as' => 'pedidos.detalhar', 'uses' => 'PedidoController@detalhar'])->middleware('can:detalhar,App\Pedido');
-    Route::get('{id}/aceitar', ['as' => 'pedidos.aceitar', 'uses' => 'PedidoController@aceitar'])->middleware('can:aceitar,pedido');
-    Route::get('{id}/despachar', ['as' => 'pedidos.despachar', 'uses' => 'PedidoController@despachar'])->middleware('can:despachar,pedido');
-    Route::get('{id}/cancelar', ['as' => 'pedidos.cancelar', 'uses' => 'PedidoController@cancelar'])->middleware('can:cancelar,pedido');
+    Route::get('{id}/aceitar', ['as' => 'pedidos.aceitar', 'uses' => 'PedidoController@aceitar'])->middleware('auth');
+    Route::get('{id}/despachar', ['as' => 'pedidos.despachar', 'uses' => 'PedidoController@despachar'])->middleware('auth');
+    Route::get('{id}/cancelar', ['as' => 'pedidos.cancelar', 'uses' => 'PedidoController@cancelar'])->middleware('auth');
 });
 
 Route::group(['prefix' => 'marcas'], function () {
@@ -73,14 +73,12 @@ Route::group(['prefix' => 'estoques'], function () {
 
 });
 Route::group(['prefix' => 'chats'], function () {
-    Route::get('', ['as' => 'chats', 'uses' => 'ChatController@index']);
-    Route::get('chat', ['as' => 'chats.chat', 'uses' => 'ChatController@chat']);
-    Route::post('salvar', ['as' => 'chats.salvar', 'uses' => 'ChatController@salvar']);
-    Route::get('{id}/excluir', ['as' => 'chats.excluir', 'uses' => 'ChatController@excluir']);
-
-    Route::get('listar', ['as' => 'chats.listar', 'uses' => 'ChatController@listar']);
-    //Route::put('{id}/alterar', ['as' => 'chats.alterar', 'uses' => 'ChatController@alterar']);
-
+    Route::get('', ['as' => 'chats', 'uses' => 'ChatController@index'])->middleware('auth');;
+    Route::get('chat', ['as' => 'chats.chat', 'uses' => 'ChatController@chat'])->middleware('can:salvar,App\Chat');
+    Route::post('salvar', ['as' => 'chats.salvar', 'uses' => 'ChatController@salvar'])->middleware('can:salvar,App\Chat');
+    Route::post('inserir', ['as' => 'chats.inserir', 'uses' => 'ChatController@inserir'])->middleware('can:salvar,App\Chat');
+    Route::get('{id}/excluir', ['as' => 'chats.excluir', 'uses' => 'ChatController@excluir'])->middleware('can:excluir,App\Chat');
+    Route::get('listar', ['as' => 'chats.listar', 'uses' => 'ChatController@listar'])->middleware('can:salvar,App\Chat');
 });
 
 Route::group(['prefix' => 'users'], function () {

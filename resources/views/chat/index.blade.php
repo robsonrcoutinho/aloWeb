@@ -12,26 +12,21 @@
                                 <h3 class="panel-title">Listagem de Mensagens do Chat</h3>
                             </div>
                             <div class="col col-xs-6 text-right">
-                               <!-- @can('salvar', App\Marca::class)
-                                <a href="{{ route('marcas.novo')}}" class="btn btn-sm btn-primary btn-create">Criar
-                                    novo</a>
-                                @endcan -->
+                                @can('salvar', App\Chat::class)
+                                <a href="{{ route('chats.chat')}}" class="btn btn-sm btn-primary">Entrar</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
 
                     <div class="panel-body">
                             @foreach($chats as $chat)
-
-                                <fieldset>
-                                   <!-- <legend>Mensagem</legend> -->
                                     <h5>{{'Data/Hora: '.date('d/m/Y H:i:s', strtotime($chat->created_at))}}</h5>
                                     <h5>{{utf8_encode('Usuário: '.$chat->usuario->name)}}</h5>
-                                    <textarea readonly class="form-control">{{$chat->mensagem}}</textarea>
-                                    <br />
+                                    <p>{{'Mensagem: '.$chat->mensagem}}</p>
                                     <a href="{{route('chats.excluir',['id'=>$chat->id])}}" class="btn btn-danger"><em
                                                 class="fa fa-trash"></em></a>
-                                </fieldset>
+                                <hr />
                             @endforeach
                     </div>
                 </div>
