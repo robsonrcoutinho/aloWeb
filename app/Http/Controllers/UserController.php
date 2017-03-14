@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\User;
 
-
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('name')->get();      //Busca usuário ordenando pelo nome
-        return view('user.index', compact('users'));//Abre página inicial de usuários
+        $users = User::orderBy('name')
+            ->paginate(config('constantes.paginacao')); //Busca usuário ordenando pelo nome
+        return view('user.index', compact('users'));    //Abre página inicial de usuários
     }
 
     public function novo()

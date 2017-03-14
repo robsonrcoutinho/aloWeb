@@ -10,22 +10,23 @@ class EstoqueController extends Controller
 {
     public function index()
     {
-        $estoques = Estoque::all();
+        $estoques = Estoque::paginate(config('constantes.paginacao'));
         return view('estoque.index', compact('estoques'));
     }
 
     public function novo()
     {
-        $produtos = Produto::all()->pluck('nome_produto', 'id');
+        $produtos = Produto::orderBy('nome_produto')
+            ->pluck('nome_produto', 'id');
         return view('estoque.novo', compact('produtos'));
     }
 
     public function salvar(EstoqueRequest $request)
     {
         $this->validate($request,
-            ['fk_id_produto'=>'unique:estoques'],
-            ['unique'=>':attribute existente no estoque'],
-            ['fk_id_produto'=>'Produto']);
+            ['fk_id_produto' => 'unique:estoques'],
+            ['unique' => ':attribute existente no estoque'],
+            ['fk_id_produto' => 'Produto']);
         Estoque::create($request->all());
         return redirect()->route('estoques');
     }

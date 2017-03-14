@@ -11,7 +11,8 @@ class PedidoController extends Controller
 
     public function index()
     {
-        $pedidos = Pedido::with('usuario')->get();
+        $pedidos = Pedido::with('usuario')
+            ->paginate(config('constantes.paginacao'));
         return view('pedido.index', compact('pedidos'));
     }
 
@@ -109,7 +110,6 @@ class PedidoController extends Controller
         endif;
         $pedido->status = 'cancelado';                          //Altera status do pedido para cancelado
         $pedido->save();                                        //Salva alteração em pedido
-
         PedidoHelper::mensagem(
             'Pedido cancelado com sucesso',
             route('pedidos'));                                  //Envia mensagem de que cancelamento foi feito e retorna a tela que lista pedidos

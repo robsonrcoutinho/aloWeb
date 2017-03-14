@@ -1,9 +1,8 @@
 @extends('main')
 @section('content')
-
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-      <div class="container">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
+    <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default panel-table">
@@ -20,8 +19,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
+                        {!! $promocaos->render() !!}
                         <table class="table table-striped table-bordered table-list">
                             <thead>
                             <tr>
@@ -33,30 +32,34 @@
                             </thead>
                             <tbody>
                             @foreach($promocaos as $promocao)
-                            <tr>
-                                <td align="center">
-                                    @can('alterar', App\Promocao::class)
-                                    <a class="btn btn-default" href="{{route('promocaos.editar',['id'=>$promocao->id])}}"><em class="fa fa-pencil"></em></a>
-                                    @endcan
-                                    @can('excluir', App\Promocao::class)
-                                    <a class="btn btn-danger" href="{{route('promocaos.excluir',['id'=>$promocao->id])}}"><em class="fa fa-trash"></em></a>
-                                    @endcan
-                                </td>
-                                <td>{{$promocao->titulo}}</td>
-                                <td>{{$promocao->valor}}</td>
-                                <td>
-                                    @foreach($promocao->produtos as $produto)
-                                        <p>{{$produto->nome_produto}}</p>
-                                    @endforeach
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td align="center">
+                                        @can('alterar', App\Promocao::class)
+                                        <a class="btn btn-default" title="Editar"
+                                           href="{{route('promocaos.editar',['id'=>$promocao->id])}}">
+                                            <em class="fa fa-pencil"></em></a>
+                                        @endcan
+                                        @can('excluir', App\Promocao::class)
+                                        <a class="btn btn-danger" title="Excluir"
+                                           href="{{route('promocaos.excluir',['id'=>$promocao->id])}}">
+                                            <em class="fa fa-trash"></em></a>
+                                        @endcan
+                                    </td>
+                                    <td>{{$promocao->titulo}}</td>
+                                    <td>{{number_format($promocao->valor, 2, ',', '.')}}</td>
+                                    <td>
+                                        @foreach($promocao->produtos as $produto)
+                                            <p>{{$produto->nome_produto}}</p>
+                                        @endforeach
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $promocaos->render() !!}
                     </div>
-
                 </div>
-
-            </div></div></div>
-
-    @endsection
+            </div>
+        </div>
+    </div>
+@endsection

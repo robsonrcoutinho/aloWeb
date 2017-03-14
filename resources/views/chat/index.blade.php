@@ -18,16 +18,20 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
-                            @foreach($chats as $chat)
-                                    <h5>{{'Data/Hora: '.date('d/m/Y H:i:s', strtotime($chat->created_at))}}</h5>
-                                    <h5>{{utf8_encode('Usuário: '.$chat->usuario->name)}}</h5>
-                                    <p>{{'Mensagem: '.$chat->mensagem}}</p>
-                                    <a href="{{route('chats.excluir',['id'=>$chat->id])}}" class="btn btn-danger"><em
-                                                class="fa fa-trash"></em></a>
-                                <hr />
-                            @endforeach
+                        {!! $chats->render() !!}
+                        @foreach($chats as $chat)
+                            <h5>{{'Data/Hora: '.date('d/m/Y H:i:s', strtotime($chat->created_at))}}</h5>
+                            <h5>{{utf8_encode('Usuário: '.$chat->usuario->name)}}</h5>
+                            <p>{{'Mensagem: '.$chat->mensagem}}</p>
+                        @can('excluir',App\Chat::class)
+                            <a class="btn btn-danger" title="Excluir"
+                               href="{{route('chats.excluir',['id'=>$chat->id])}}">
+                                <em class="fa fa-trash"></em></a>
+                        @endcan
+                            <hr/>
+                        @endforeach
+                        {!! $chats->render() !!}
                     </div>
                 </div>
             </div>

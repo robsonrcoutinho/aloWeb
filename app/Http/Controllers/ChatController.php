@@ -10,11 +10,11 @@ class ChatController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->cant('visualizar', Chat::class)): //Se usuário não puder acessar visualização
-            return redirect()->route('chats.chat');         //Redireciona para chat
+        if (Auth::user()->cant('visualizar', Chat::class)):     //Se usuário não puder acessar visualização
+            return redirect()->route('chats.chat');             //Redireciona para chat
         endif;
-        $chats = Chat::all();                               //Busca todos os chats
-        return view('chat.index', compact('chats'));        //Passa view index
+        $chats = Chat::paginate(config('constantes.paginacao'));//Busca todos os chats
+        return view('chat.index', compact('chats'));            //Passa view index
     }
 
     public function salvar(ChatRequest $request)
@@ -39,7 +39,7 @@ class ChatController extends Controller
 
     public function chat()
     {
-        $chats = Chat::with('usuario')->orderBy('id', 'desc')->get();   //Busca todos os chats com usuario e inverte ordem
+        $chats = Chat::with('usuario')->orderBy('id', 'desc')->get();   //Busca todos os chats com usuario em ordem inversa pelo id
         return view('chat.chat', compact('chats'));                     //Passar para view de chats
     }
 

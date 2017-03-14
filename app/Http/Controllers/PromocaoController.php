@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Produto;
 use App\Promocao;
 use App\Http\Requests\PromocaoRequest;
-use Illuminate\Http\Request;
 
 class PromocaoController extends Controller
 {
     public function index()
     {
-        $promocaos = Promocao::orderBy('titulo')->with('produtos')->get();
+        $promocaos = Promocao::orderBy('titulo')->with('produtos')
+            ->paginate(config('constantes.paginacao'));
         return view('promocao.index', compact('promocaos'));
     }
 
@@ -32,8 +32,9 @@ class PromocaoController extends Controller
     {
         $promocao = Promocao::find($id);
         $produtos = Produto::orderBy('nome_produto')->get();
-        return view('promocao.editar',compact('promocao', 'produtos'));
+        return view('promocao.editar', compact('promocao', 'produtos'));
     }
+
     public function alterar(PromocaoRequest $request, $id)
     {
         $promocao = Promocao::find($id);

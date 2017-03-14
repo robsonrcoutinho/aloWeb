@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
-use App\Http\Requests\EstoqueRequest;
 use App\Produto;
 use App\Marca;
 use App\Estoque;
@@ -13,15 +12,18 @@ class ProdutoController extends Controller
 {
     public function index(Produto $produto)
     {
-        $produtos = $produto->all();
+        $produtos = $produto->orderBy('nome_produto')
+            ->with('categoria', 'marca')
+            ->paginate(config('constantes.paginacao'));
         return view('produto.index', compact('produtos'));
     }
 
     public function novo()
     {
-        $categorias = Categoria::all()->pluck('nome_categoria', 'id');
-        $marcas = Marca::all()->pluck('marca', 'id');
-        return view('produto.novo', ['categorias'=>$categorias, 'marcas'=>$marcas]);
+        $categorias = Categoria::orderBy('nome_categoria')
+            ->pluck('nome_categoria', 'id');
+        $marcas = Marca::orderBy('marca')->pluck('marca', 'id');
+        return view('produto.novo', ['categorias' => $categorias, 'marcas' => $marcas]);
     }
 
     public function salvar(ProdutoRequest $request)
@@ -33,21 +35,17 @@ class ProdutoController extends Controller
         $nome_produto = $produto->nome_produto;
         $imagem = $request->file('imagem');
 
-        $nome_produto.= '.' . $imagem->getClientOriginalExtension();
+        $nome_produto .= '.' . $imagem->getClientOriginalExtension();
         $diretorio = 'public/' . 'produtos';
         $imagem->move($diretorio, $nome_produto);
-        $produto->imagem= $diretorio . '/' . $nome_produto;
-         $produto->save();
+        $produto->imagem = $diretorio . '/' . $nome_produto;
+        $produto->save();
 
-         $estoque = new Estoque();
-         $estoque->fk_id_produto = $produto->id;
-         $estoque->quantidade = $request->get('quantidade');
+        $estoque = new Estoque();
+        $estoque->fk_id_produto = $produto->id;
+        $estoque->quantidade = $request->get('quantidade');
 
-
-
-         $estoque->save();
-
-
+        $estoque->save();
 
         return redirect('produtos');
     }
@@ -55,8 +53,9 @@ class ProdutoController extends Controller
     public function editar($id)
     {
         $produto = Produto::find($id);
-        $categorias = Categoria::all()->pluck('nome_categoria', 'id');
-        $marcas = Marca::all()->pluck('marca', 'id');
+        $categorias = Categoria::orderBy('nome_categoria')
+            ->pluck('nome_categoria', 'id');
+        $marcas = Marca::orderBy('marca')->pluck('marca', 'id');
         return view('produto.editar', compact('produto', 'categorias', 'marcas'));
     }
 
@@ -65,6 +64,7 @@ class ProdutoController extends Controller
         Produto::find($id)->update($request->all());
         return redirect('produtos');
     }
+
     public function excluir($id)
     {
         $produto = Produto::find($id);

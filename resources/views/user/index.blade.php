@@ -17,8 +17,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
+                        {!! $users->render() !!}
                         <table class="table table-striped table-bordered table-list">
                             <thead>
                             <tr>
@@ -48,8 +48,8 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $users->render() !!}
                     </div>
                 </div>
-
             </div></div></div>
 @endsection

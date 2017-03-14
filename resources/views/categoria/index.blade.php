@@ -19,8 +19,8 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
+                        {!! $categorias->render() !!}
                         <table class="table table-striped table-bordered table-list">
                             <thead>
                             <tr>
@@ -33,12 +33,14 @@
                                 <tr>
                                     <td align="center">
                                         @can('alterar', App\Categoria::class)
-                                        <a href="{{route('categorias.editar',['id'=>$categoria->id])}}"
-                                           class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                        <a class="btn btn-default" title="Editar"
+                                           href="{{route('categorias.editar',['id'=>$categoria->id])}}">
+                                            <em class="fa fa-pencil"></em></a>
                                         @endcan
                                         @can('excluir', App\Categoria::class)
-                                        <a href="{{route('categorias.excluir',['id'=>$categoria->id])}}"
-                                           class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                        <a class="btn btn-danger" title="Excluir"
+                                           href="{{route('categorias.excluir',['id'=>$categoria->id])}}">
+                                            <em class="fa fa-trash"></em></a>
                                         @endcan
                                     </td>
                                     <td>{{$categoria->nome_categoria}}</td>
@@ -46,6 +48,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $categorias->render() !!}
                     </div>
                 </div>
             </div>

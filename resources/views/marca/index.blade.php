@@ -13,22 +13,19 @@
                             </div>
                             <div class="col col-xs-6 text-right">
                                 @can('salvar', App\Marca::class)
-                                <a href="{{ route('marcas.novo')}}" class="btn btn-sm btn-primary btn-create">Criar
-                                    novo</a>
+                                <a href="{{ route('marcas.novo')}}" class="btn btn-sm btn-primary btn-create">
+                                    Criar novo</a>
                                 @endcan
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
+                        {!! $marcas->render() !!}
                         <table class="table table-striped table-bordered table-list">
                             <thead>
                             <tr>
                                 <th><em class="fa"></em></th>
-
                                 <th>Marca</th>
-
-
                             </tr>
                             </thead>
                             <tbody>
@@ -36,12 +33,14 @@
                                 <tr>
                                     <td align="center">
                                         @can('alterar', App\Marca::class)
-                                        <a href="{{route('marcas.editar',['id'=>$marca->id])}}" class="btn btn-default"><em
-                                                    class="fa fa-pencil"></em></a>
+                                        <a class="btn btn-default" title="Editar"
+                                           href="{{route('marcas.editar',['id'=>$marca->id])}}">
+                                            <em class="fa fa-pencil"></em></a>
                                         @endcan
                                         @can('excluir', App\Marca::class)
-                                        <a href="{{route('marcas.excluir',['id'=>$marca->id])}}" class="btn btn-danger"><em
-                                                    class="fa fa-trash"></em></a>
+                                        <a class="btn btn-danger" title="Excluir"
+                                           href="{{route('marcas.excluir',['id'=>$marca->id])}}">
+                                            <em class="fa fa-trash"></em></a>
                                         @endcan
                                     </td>
                                     <td>{{$marca->marca}}</td>
@@ -49,6 +48,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $marcas->render() !!}
                     </div>
                 </div>
             </div>

@@ -10,7 +10,8 @@ class CategoriaController extends Controller
 {
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::OrderBy('nome_categoria')
+            ->paginate(config('constantes.paginacao'));
         return view('categoria.index', compact('categorias'));
     }
 
